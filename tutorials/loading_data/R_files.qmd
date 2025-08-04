@@ -34,25 +34,42 @@ titanic <- readRDS(paste0(dataDir, "titanic.rds"))
 titanic
 ```
 
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+dir.create("data")
+setwd("/home/web_user/data")
+download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/diabetes.rds", "diabetes.rds")
+download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/diabetes.txt", "diabetes.txt")
+setwd("/home/web_user")
+library(readr)
+```
+
+
 ::: practice
 
 ## Practice
 
-a. Load the dataset saved as '../data/diabetes.rds'.
-b. Use the str() function to compare the structure of the data you loaded in (a) to the 'diabetes2' dataset loaded above.
-* Are there any differences between these two objects? If so, what are the differences?
+a. Load the dataset saved as 'diabetes.rds' inside the directory "data".
+b. Use the str() function to compare the structure of the data in the dataset diabetes2. Are there any differences between these two objects? If so, what are the differences?
 
 :::: {.panel-tabset}
 ## {{< var tab_title.editor >}}
 
 ```{webr-r}
+diabetes2 <- read.table("data/diabetes.txt", header = TRUE, sep = "\t")
 ```
 
 ## {{< var tab_title.solution >}}
 
+The main difference between the two objects lies in the fact that the dataset loaded from the RDS file also preserves all the characteristics of the variables. In our case, this means that the variable `sex` is stored as a two-level factor, whereas in `diabetes2` it is stored simply as a character. 
 
 ```{r}
-
+diabetes2 <- read.table("data/diabetes.txt", header = TRUE, sep = "\t")
+diabetes <- readRDS("data/diabetes.rds")
+str(diabetes)
+str(diabetes2)
 ```
 ::::
 

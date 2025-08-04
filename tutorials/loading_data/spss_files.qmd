@@ -56,3 +56,37 @@ Note: The `labelled` package provides a suite of utilities to manipulate SPSS-st
 
 :::
 
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+dir.create("data")
+setwd("/home/web_user/data")
+download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/starwars.sav", "starwars.sav")
+setwd("/home/web_user")
+```
+
+::: practice
+
+## Practice
+
+Use the haven::read_spss() function to load the SPSS dataset saved as "starwars.sav" inside the directory data.
+
+:::: {.panel-tabset}
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.solution >}}
+
+
+```{r}
+library(haven)
+read_spss("data/starwars.sav")
+```
+::::
+
+:::
+
+

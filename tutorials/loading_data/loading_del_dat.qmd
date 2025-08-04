@@ -52,7 +52,7 @@ diabetes <- read_tsv(paste0(dataDir, "diabetes.txt"))
 diabetes
 ```
 
-We can also use the base R functions for reading tabular data, the more general being `read_table()`
+We can also use the base R functions for reading tabular data, the more general being `read.table()`
 
 ```{r}
 diabetes2 <- read.table(paste0(dataDir, "diabetes.txt"),
