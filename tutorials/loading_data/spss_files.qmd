@@ -1,0 +1,58 @@
+---
+title: "SPSS Files"
+---
+
+```{r, echo=FALSE}
+dataDir <- "data/"
+```
+
+## Loading SPSS Data
+
+R can also read files created by other statistical software, such as SPSS, using the `haven` and `labelled` packages.
+
+The `haven` package, part of the tidyverse, provides a function called `read_spss()` that reads `.sav` files and returns a tibble (a special dataset type typical of the tidyverse), while preserving important metadata like variable labels and value labels.
+
+```{r}
+library(haven)
+mtcars1 <- read_spss(paste0(dataDir, "mtcars.sav"))
+```
+
+We can inspect the metadata using `attributes()`:
+
+```{r}
+attributes(mtcars1)
+```
+
+One feature of `haven` is that it stores labeled SPSS variables as labelled vectors, preserving both the numeric code and its corresponding label. For example:
+
+```{r}
+mtcars1$am
+attributes(mtcars1$am)
+```
+
+To remove value labels (but retain variable labels), we use `labelled::unlabelled()`:
+
+```{r}
+library(labelled)
+mtcars2 <- unlabelled(mtcars1)
+```
+
+We can view the value labels with:
+
+```{r}
+val_labels(mtcars1)
+val_labels(mtcars2)
+```
+
+And to inspect the label for a specific variable:
+
+```{r}
+var_label(mtcars2)
+```
+
+::: {.callout-note}
+
+Note: The `labelled` package provides a suite of utilities to manipulate SPSS-style metadata, including the ability to convert labelled variables, set or remove labels, and prepare data for export back to SPSS or other systems.
+
+:::
+

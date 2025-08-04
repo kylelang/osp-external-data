@@ -1,0 +1,36 @@
+---
+title: "Excel Files"
+---
+
+```{r, echo=FALSE}
+dataDir <- "data/"
+```
+
+
+## Loading Excel Files
+
+Many datasets, especially those shared outside of academic or statistical contexts, come in Excel format. R provides multiple packages to work with Excel workbooks.
+
+The `readxl` package, part of the tidyverse, is a lightweight and reliable tool for reading .xlsx files without requiring external dependencies. We use `read_excel()` to read a specific worksheet:
+
+```{r}
+library(readxl)
+titanic2 <- read_excel(paste0(dataDir, "example_data.xlsx"), sheet = "titanic")
+```
+
+An alternative is the `openxlsx` package, which offers both reading and writing capabilities. It's useful when you need more control over formatting or workbook structure:
+
+```{r}
+library(openxlsx)
+titanic3 <- read.xlsx(paste0(dataDir, "example_data.xlsx"), sheet = "titanic")
+```
+
+After loading the data, we can inspect the structure with:
+
+```{r}
+str(titanic2)
+str(titanic3)
+```
+
+Each function achieves a similar result—reading data from the "titanic" worksheet—but when we want to be more specific about what we want to load, the two functions use different command. `readxl` is more minimal, while `openxlsx` is more feature-rich.
+

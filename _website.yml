@@ -30,12 +30,14 @@ website:
     contents:
       - href: index.qmd
         text: "Overview"
-      - section: tutorials/first_tutorial/index.qmd
-        text: "First Tutorial"
+      - section: tutorials/loading_data/index.qmd
+        text: "Loading Data"
         contents:
-        - href: tutorials/first_tutorial/topic1.qmd
-        - href: tutorials/first_tutorial/topic2.qmd
-        - href: tutorials/first_tutorial/topic3.qmd
+        - href: tutorials/loading_data/loading_del_dat.qmd
+        - href: tutorials/loading_data/csv_files.qmd
+        - href: tutorials/loading_data/R_files.qmd
+        - href: tutorials/loading_data/spss_files.qmd
+        - href: tutorials/loading_data/excel_files.qmd
         - href: quizzes/first_tutorial/index.qmd
           text: "Knowledge Quiz"
       - section: tutorials/second_tutorial/index.qmd

@@ -12,7 +12,7 @@ source(here::here("R", "buttons.R"))
 
 Welcome to our template module. Every module comprises a series of topical *tutorials*, such as the three linked below.
 
-1. [First Topic](/tutorials/first_tutorial/index.qmd)
+1. [First Topic](/tutorials/loading_data/index.qmd)
 1. [Second Topic](/tutorials/second_tutorial/index.qmd)
 
 Each tutorial will comprise a series of interactive lessons with practice problems embedded throughout. Each tutorial
