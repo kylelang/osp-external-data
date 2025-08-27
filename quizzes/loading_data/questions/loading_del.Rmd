@@ -1,0 +1,40 @@
+Question
+========
+Which of the following expressions will read the file `info.dat`, that is inside the directory `data`? Consider that `info.dat` is space-delimited file and assume that all the necessary packages are already loaded.
+
+Answerlist
+----------
+* `read_delim("data/info.dat")`
+* `read_delim("data/info.dat", delim = " ")`
+* `read.table("data/info.dat", header = TRUE, sep= " ")`
+* `read.table("data/info.dat", header = TRUE)`
+* `read_delim("data/info.dat", delim = "\t")`
+* `read_delim("data/info.dat", sep= " ")`
+* `read.table("data/info.dat", sep= "\t")`
+* `read_tsv("data/info.dat", delim = " ")`
+* `read_delim("info.dat")`
+* `read_delim("info.dat", delim = " ")`
+* `read.table("info.dat", header = TRUE, sep= " ")`
+
+Solution
+========
+
+Answerlist
+----------
+* TRUE: `read_delim()` is the function that reads space-delimited files from the package `readr`
+* TRUE: `read_delim()` is the function that reads space-delimited files from the package `readr` and we specify the space as the delimiter
+* TRUE: `read.table()` is the function that reads space-delimited files from base R and we specify the space as the separator
+* TRUE: `read.table()` is the function that reads space-delimited files from base R
+* FALSE: The delimiter in the file is the space, not the tab 
+* FALSE: To specify the delimiter in `read_delim()` the correct argument is `delim`, not `sep`
+* FALSE: The delimiter in the file is the space, not the tab 
+* FALSE: The function `read_tsv()` doesn't have the argument `delim`
+* FALSE: The file is in the directory data
+* FALSE: The file is in the directory data
+* FALSE: The file is in the directory data
+Meta-information
+================
+exname: Loading Delimited Data
+extype: mchoice
+exsolution: 11110000000
+exshuffle: 6

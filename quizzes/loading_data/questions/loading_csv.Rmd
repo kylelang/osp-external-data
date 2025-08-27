@@ -1,0 +1,40 @@
+Question
+========
+```{r, echo = FALSE, include = FALSE}
+library(readr)
+boys_def <- read_csv2(
+  file       = "data/boys_eu.csv",
+  col_select = -(6:8),
+  col_types  = cols(
+    reg         = col_factor(),
+  )
+)
+```
+
+We want to load the semicolon-separated file `boys_eu` in the directory data, so we use the function `read_csv2()`. Fill the void the code to get the tibble below:
+
+read_csv2(
+  file       = "data/boys_eu.csv",
+  col_select = -(6:8),
+  col_types  = cols(
+    ____________________
+  )
+)
+
+
+
+```{r, echo=FALSE}
+head(boys_def)
+```
+
+
+
+Solution
+========
+We have to specify that the variable reg is a factor variable, and we can do so using `reg = col_factor()`
+
+Meta-information
+================
+exname: Loading CSV
+extype: string
+exsolution: reg = col_factor()

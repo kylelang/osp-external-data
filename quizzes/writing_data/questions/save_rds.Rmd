@@ -1,0 +1,40 @@
+Question
+========
+
+Witch of the following expressions will save the data frame `girls` as a single R object and not a workspace file, and be sure to retain the object name. Assume that all the needed packages are already loaded.
+
+Answerlist
+----------
+
+* It is not possible to save a R object as a .rds file while retaining its name
+* `saveRDS(girls,  "girls.rds")`
+* `saveRDS(girls, retain = TRUE, "girls.rds")`
+* `saveRDS(girls,  "girls.RData")`
+* `save(girls,  "girls.RData")`
+* `save(girls,  "girls.rds")`
+* `write_RDS(girls,  "girls.rds")`
+* `write_RDS(girls, retain = TRUE, "girls.rds")`
+* `write_sav(girls,  "girls.sav")`
+
+Solution
+========
+The default value for the `use` argument is `"everything"`.
+
+Answerlist
+----------
+* Correct
+* Wrong: This will not save the name of the object
+* Wrong: The argument `retain` doesn't exist
+* Wrong: The function `saveRDS()` saves .rds files, not .RData files
+* Wrong: This will save the data frame as workspace file
+* Wrong: The function `save()` saves .RData files not .rds files
+* Wrong: The function `write_RDS` doesn't exist
+* Wrong: The function `write_RDS` doesn't exist
+* Wrong: This will save the data frame as a .sav file, not an R object
+
+Meta-information
+================
+exname: Save RDS
+extype: schoice
+exsolution: 100000000
+exshuffle: 5

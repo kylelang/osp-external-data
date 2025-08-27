@@ -1,0 +1,52 @@
+Question
+========
+```{r, echo = FALSE, include = FALSE}
+library(haven)
+library(dplyr)
+starwars <- read_spss("data/starwars.sav") %>%
+  select(-c(homeworld,species))
+```
+
+Consider the following tibble, how can we cancel the labels of the variable `hair_color`?
+
+```{r, echo = FALSE}
+starwars
+```
+
+
+Answerlist
+----------
+* `starwars$hair_color <- unlabelled(starwars$hair_color)`
+* `unlabelled(starwars$hair_color)`
+* `val_label(starwars)$hair_color <- NULL`
+* `val_labels(starwars)$hair_color <- NULL`
+* `var_labels(starwars)$hair_color <- NULL`
+* `val_labels(starwars$hair_color) <- NULL`
+* `unlabelled(starwars)$hair_color`
+* `starwars$hair_color <- unlabelled(starwars)`
+* `starwars <- unlabelled(starwars$hair_color)`
+* It's not possible to cancel the values labels of only one variable
+
+Solution
+========
+The correct way to cancel the labels of the variable `hair_color` is `unlabelled(starwars$hair_color)`, and then we have to assign it to `starwars$hair_color`
+
+Answerlist
+----------
+* Correct
+* Wrong: We are not assigning the unlabeled values to the data frame
+* Wrong: `val_label()` is used to get the list of value label for a variable, not to set labels
+* Wrong: `val_labels()` is used to get the list of value label, not to set labels
+* Wrong: `var_labels()` is used to get the list of variable labels, not to set labels
+* Wrong: `val_labels()` is used to get the list of value label, not to set labels
+* Wrong:  We are not assigning the unlabeled values to the data frame
+* Wrong: We are assigning the whole unlabeled data frame to just one variable
+* Wrong: We are assigning just one variable to the whole unlabeled data frame
+* Wrong: It is possible
+
+Meta-information
+================
+exname: Label SPSS
+extype: schoice
+exsolution: 1000000000
+exshuffle: 5

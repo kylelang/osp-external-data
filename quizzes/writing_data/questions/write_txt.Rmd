@@ -1,0 +1,15 @@
+Question
+========
+
+Save the data frame `girls` as a tab-delimited file, called girls.txt inside the folder "data". Write the `NA` as empty space, and use the specific function. Assume that all the needed packages are already loaded.
+
+Solution
+========
+The specific function is `write_tsv()`, the file will be saved as `"data\girls.txt"`, and to save the `NA` as empty space we will need to specify `na = " "`. So in the end, the expession will be: `write_tsv(girls, "data\girls.txt", na = " ")`
+
+
+Meta-information
+================
+exname: Write .txt
+extype: string
+exsolution: write_tsv(girls, "data\girls.txt", na = " ")
