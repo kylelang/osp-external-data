@@ -1,0 +1,89 @@
+---
+title: "R files"
+format: 
+  html:
+    resources:
+      - data/*
+engine: knitr
+filters:
+  - webr
+---
+
+In addition to reading delimited text files (like CSVs and TSVs), R provides tools for importing a wide variety of non-tabular or proprietary data formats. These include R’s native file types as well as files created in other statistical software like SPSS or spreadsheet applications like Excel.
+
+This section covers how to load such files into R, using both base functions and functions from specialized packages. Understanding how to work with these formats is essential when collaborating with others or using externally prepared datasets.
+
+```{r, echo=FALSE}
+dataDir <- "data/"
+```
+
+
+## Loading R Data
+R supports two native data formats for saving and loading objects: `.RData` and `.rds`.
+
+`.RData` files are R workspace files. They can store multiple objects and are loaded into the global environment using the base R function `load()`. This command loads the contents of the file—whatever objects were saved in it—directly into the current R session. You don’t assign the result to an object; instead, the file’s contents are restored with their original names.
+
+```{r}
+load(paste0(dataDir, "boys.RData"))
+```
+
+`.rds` files, in contrast, are designed to store a single R object. They are read using `readRDS()` and must be assigned to a name when loaded:
+
+```{r}
+titanic <- readRDS(paste0(dataDir, "titanic.rds"))
+titanic
+```
+
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+dir.create("data")
+setwd("/home/web_user/data")
+download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/diabetes.rds", "diabetes.rds")
+download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/diabetes.txt", "diabetes.txt")
+setwd("/home/web_user")
+library(readr)
+```
+
+
+::: practice
+
+## Practice
+
+a. Load the dataset saved as 'diabetes.rds' inside the directory "data".
+b. Use the str() function to compare the structure of the data in the dataset diabetes2. Are there any differences between these two objects? If so, what are the differences?
+
+:::: {.panel-tabset}
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+diabetes2 <- read.table("data/diabetes.txt", header = TRUE, sep = "\t")
+```
+
+## {{< var tab_title.solution >}}
+
+The main difference between the two objects lies in the fact that the dataset loaded from the RDS file also preserves all the characteristics of the variables. In our case, this means that the variable `sex` is stored as a two-level factor, whereas in `diabetes2` it is stored simply as a character. 
+
+```{r}
+diabetes2 <- read.table("data/diabetes.txt", header = TRUE, sep = "\t")
+diabetes <- readRDS("data/diabetes.rds")
+str(diabetes)
+str(diabetes2)
+```
+::::
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+

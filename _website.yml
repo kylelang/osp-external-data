@@ -1,0 +1,60 @@
+website:
+
+  title: "OSP Module Template"
+
+  site-url: "https://www.openstatprog.com/module-template/"
+
+  page-navigation: true
+
+  back-to-top-navigation: true
+
+  navbar:
+    title: false
+    background: primary
+    foreground: dark
+    left:
+      - href: "https://www.openstatprog.com"
+        text: "Open-Stat-Prog"
+      - href: index.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            href: https://github.com/open-stat-prog/module-template
+          - text: Report a Bug
+            href: https://github.com/open-stat-prog/module-template/issues
+
+  sidebar:
+    style: "floating"
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: "Overview"
+      - section: tutorials/loading_data/index.qmd
+        text: "Loading Data"
+        contents:
+        - href: tutorials/loading_data/loading_del_dat.qmd
+        - href: tutorials/loading_data/csv_files.qmd
+        - href: tutorials/loading_data/R_files.qmd
+        - href: tutorials/loading_data/spss_files.qmd
+        - href: tutorials/loading_data/excel_files.qmd
+        - href: quizzes/first_tutorial/index.qmd
+          text: "Knowledge Quiz"
+      - section: tutorials/second_tutorial/index.qmd
+        text: "Second Tutorial"
+        contents:
+          - href: tutorials/second_tutorial/topic1.qmd
+          - href: tutorials/second_tutorial/topic2.qmd
+          - href: quizzes/second_tutorial/index.qmd
+            text: "Knowledge Quiz"
+      - href: conclusion.qmd
+
+  page-footer:
+    background: primary
+    foreground: dark
+    left: |
+      [![](/assets/images/UU_logo_2021_EN_BLACK.png){fig-alt="UU" width=200px}](https://uu.nl) 
+    right: 
+      - text: "&copy; 2025"
+      - href: "https://github.com/open-stat-prog"
+        text: Open-Stat-Prog

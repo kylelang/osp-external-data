@@ -1,0 +1,26 @@
+---
+title: "Knowledge Quiz: Loading Data"
+---
+
+::: {.column-margin}
+
+:::: {.callout-note}
+- Click the check-mark button to check your answer.
+- Click the question-mark button to see an explanation of the solution.
+::::
+
+:::
+
+```{r quiz1}
+#| echo: FALSE
+#| results: "asis"
+
+exams2forms::exams2forms(
+  file = list(
+    "loading_del.Rmd",
+    "loading_csv.Rmd",
+    "label_spss.Rmd"
+  ),
+  edir = here::here("quizzes", "loading_data", "questions")
+)
+```

@@ -1,0 +1,25 @@
+---
+title: "Knowledge Quiz: Writing Data"
+---
+
+::: {.column-margin}
+
+:::: {.callout-note}
+- Click the check-mark button to check your answer.
+- Click the question-mark button to see an explanation of the solution.
+::::
+
+:::
+
+```{r quiz2}
+#| echo: FALSE
+#| results: "asis"
+
+exams2forms::exams2forms(
+  file = list(
+    "write_txt.Rmd",
+    "save_rds.Rmd"
+  ),
+  edir = here::here("quizzes", "writing_data", "questions")
+)
+```

@@ -1,0 +1,64 @@
+---
+title: "Loading Delimited Data"
+---
+
+## Delimited Data
+
+In any data analysis workflow, one of the first tasks you'll encounter is importing external datasets into R. These datasets often come in the form of delimited text files—plain text files where data values are separated by a specific character, such as a comma, tab, or space. Each row in the file typically represents one observation, and each field (or column) is separated by a delimiter. This format makes the data easy to read, store, and share across software tools.
+
+While base R provides functions for reading these kinds of files (`read.table()`, `read.csv()`, etc.), the `readr` package from the tidyverse offers a more modern and consistent approach. It provides functions that are faster, easier to configure, and more transparent in how they parse data.
+
+```{r}
+## install.packages("readr") 
+library(readr)
+```
+
+In the examples that follow, you’ll notice that all file paths are constructed using a variable called `dataDir`. This variable is assumed to contain the path to the folder where all data files are stored. For example, if your data files are in a folder named `data/`, you might define it like this at the beginning of your script:
+
+```{r}
+dataDir <- "data/"
+```
+
+
+## Reading Space-Delimited Files
+
+We begin by reading a file named `boys.dat`, which contains data where columns are separated by spaces. We use `readr::read_delim()` for this purpose. This function allows us to specify any delimiter, but if the file is cleanly space-delimited, it can often detect the separator automatically.
+
+```{r}
+boys <- read_delim(paste0(dataDir, "boys.dat"))
+boys
+```
+
+This command reads the file and assigns the resulting data frame to the object `boys`. We use `paste0()` to construct the full file path by combining a directory path (`dataDir`) with the file name.
+
+In many datasets, missing values are represented by placeholder codes, such as `-999`. We can instruct `read_delim()` to interpret such codes as `NA` by specifying the `na` argument:
+
+```{r}
+boys <- read_delim(paste0(dataDir, "boys.dat"), na = "-999")
+boys
+```
+
+Another common format is the tab-delimited text file, where columns are separated by tab characters (`\t`). We load a file named `diabetes.txt`, again using `read_delim()`, but this time we specify the delimiter explicitly:
+
+```{r}
+diabetes <- read_delim(paste0(dataDir, "diabetes.txt"), delim = "\t")
+diabetes
+```
+
+Alternatively, `readr` provides a dedicated function for tab-separated files: `read_tsv()`. This is a wrapper around `read_delim()` with the delimiter preset to tab, making the syntax slightly cleaner:
+
+```{r}
+diabetes <- read_tsv(paste0(dataDir, "diabetes.txt"))
+diabetes
+```
+
+We can also use the base R functions for reading tabular data, the more general being `read.table()`
+
+```{r}
+diabetes2 <- read.table(paste0(dataDir, "diabetes.txt"),
+                        header = TRUE,
+                        sep = "\t")
+
+```
+
+

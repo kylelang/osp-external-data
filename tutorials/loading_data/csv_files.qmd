@@ -1,0 +1,81 @@
+---
+title: "CSV Files"
+---
+
+```{r, echo=FALSE}
+dataDir <- "data/"
+```
+
+
+## Reading CSV Files
+
+CSV (Comma-Separated Values) files are among the most widely used formats for storing and exchanging tabular data. They are simple text files in which each line represents a row in the table, and individual values (or fields) are separated by commas. The first line typically contains the column headers (variable names), followed by rows of observations.
+
+CSV files are platform-independent and supported by virtually every spreadsheet, database, and statistical application, which makes them a standard choice for data export and sharing. The `read_csv()` function is used to read standard CSV files in which columns are separated by commas:
+
+```{r}
+library(readr)
+utmb <- read_csv(paste0(dataDir, "utmb_2017.csv"))
+utmb
+```
+
+In some cases, the first column in a CSV may be an unnecessary row index that we want to ignore. With `readr`, we can drop this column directly as we read the data, using the `col_select` argument:
+
+```{r}
+utmb <- read_csv(paste0(dataDir, "utmb_2017.csv"), col_select = -1)
+utmb
+```
+
+To inspect the structure of the resulting data frame, we use:
+```{r}
+str(utmb)
+```
+
+And to examine how `readr` parsed each column—i.e., which types were automatically assigned—we use the `spec()` function:
+
+```{r}
+spec(utmb)
+```
+
+By default, `readr` tries to guess the appropriate type for each column based on the first 1,000 rows. While often correct, this process isn't infallible. For more control, we can explicitly define column types using the `col_types` argument, which accepts a specification created using `cols()` and type constructors such as `col_character()`, `col_integer()`, and `col_factor()`:
+
+```{r}
+utmb <- read_csv(
+  file       = paste0(dataDir, "utmb_2017.csv"),
+  col_select = -1,
+  col_types  = cols(
+    bib         = col_character(),
+    category    = col_factor(),
+    rank        = col_integer(),
+    nationality = col_factor()
+  )
+)
+utmb
+str(utmb)
+
+```
+
+Sometimes CSV files use a semicolon (`;)` instead of a comma as the column separator. These are typically read using `read_csv2()`, which is configured for this format:
+
+```{r}
+boys <- read_csv2(paste0(dataDir, "boys_eu.csv"))
+boys
+```
+
+As with standard CSVs, we can also specify column types explicitly. `readr` allows us to use a compact string format, where each character represents the type of a column (`d` for double, `f` for factor, etc.):
+
+```{r}
+boys <- read_csv2(paste0(dataDir, "boys_eu.csv"), col_types = "dddddffdf")
+boys
+str(boys)
+```
+
+R also includes built-in functions for reading CSV files, although they lack some of the more advanced options of the `readr` functions.
+
+```{r}
+# Standard comma-separated CSV file
+utmb2 <- read.csv(paste0(dataDir, "utmb_2017.csv"))
+#CSV with semicolons as delimiters
+boys2 <- read.csv2(paste0(dataDir, "boys_eu.csv"))
+
+```
