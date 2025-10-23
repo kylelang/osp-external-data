@@ -21,6 +21,6 @@ exams2forms::exams2forms(
     "loading_csv.Rmd",
     "label_spss.Rmd"
   ),
-  edir = here::here("quizzes", "loading_data", "questions")
+  edir = here::here("quizzes", "loading", "questions")
 )
 ```

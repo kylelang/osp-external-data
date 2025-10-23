@@ -1,0 +1,15 @@
+---
+title: "Loading Data"
+---
+
+Before any data analysis can begin, the data itself must be loaded into the R environment. This step, often referred to
+as data import, is fundamental to any workflow. Data arrives in many forms—some structured and clean, others less so—and
+from a wide variety of sources. Each format requires its own strategy for reading and interpretation.
+
+In the sections that follow, we explore the most commonly encountered data formats and the tools used to load them. We
+begin with plain-text tabular files—CSV, TSV, and space-delimited data—using functions from the `readr` package, which
+provides fast and consistent methods for reading structured text data. 
+
+We then turn to data stored in non-delimited formats. This includes R’s native binary files (.RData and .rds), as well
+as datasets from SPSS (another statistical software) or Excel. To work with these, we make use of additional packages
+including `haven`, `labelled`, `readxl`, and `openxlsx`.

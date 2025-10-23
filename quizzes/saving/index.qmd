@@ -1,5 +1,5 @@
 ---
-title: "Knowledge Quiz: Writing Data"
+title: "Knowledge Quiz: Saving Data"
 ---
 
 ::: {.column-margin}
@@ -20,6 +20,6 @@ exams2forms::exams2forms(
     "write_txt.Rmd",
     "save_rds.Rmd"
   ),
-  edir = here::here("quizzes", "writing_data", "questions")
+  edir = here::here("quizzes", "saving", "questions")
 )
 ```

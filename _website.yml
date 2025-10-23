@@ -1,8 +1,8 @@
 website:
 
-  title: "OSP Module Template"
+  title: "OSP External Data"
 
-  site-url: "https://www.openstatprog.com/module-template/"
+  site-url: "https://www.openstatprog.com/external-data/"
 
   page-navigation: true
 
@@ -20,9 +20,9 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            href: https://github.com/open-stat-prog/module-template
+            href: https://github.com/open-stat-prog/external-data
           - text: Report a Bug
-            href: https://github.com/open-stat-prog/module-template/issues
+            href: https://github.com/open-stat-prog/external-data/issues
 
   sidebar:
     style: "floating"
@@ -30,23 +30,23 @@ website:
     contents:
       - href: index.qmd
         text: "Overview"
-      - section: tutorials/loading_data/index.qmd
+      - section: tutorials/loading/index.qmd
         text: "Loading Data"
         contents:
-        - href: tutorials/loading_data/loading_del_dat.qmd
-        - href: tutorials/loading_data/csv_files.qmd
-        - href: tutorials/loading_data/R_files.qmd
-        - href: tutorials/loading_data/spss_files.qmd
-        - href: tutorials/loading_data/excel_files.qmd
-        - href: quizzes/first_tutorial/index.qmd
+        - href: tutorials/loading/delimited.qmd
+        - href: tutorials/loading/csv_files.qmd
+        - href: tutorials/loading/r_data.qmd
+        - href: tutorials/loading/spss_files.qmd
+        - href: tutorials/loading/excel_files.qmd
+        - href: quizzes/loading/index.qmd
           text: "Knowledge Quiz"
-      - section: tutorials/second_tutorial/index.qmd
-        text: "Second Tutorial"
+      - section: tutorials/saving/index.qmd
+        text: "Saving Data"
         contents:
-          - href: tutorials/second_tutorial/topic1.qmd
-          - href: tutorials/second_tutorial/topic2.qmd
-          - href: quizzes/second_tutorial/index.qmd
-            text: "Knowledge Quiz"
+        - href: tutorials/saving/topic1.qmd
+        - href: tutorials/saving/topic2.qmd
+        - href: quizzes/saving/index.qmd
+          text: "Knowledge Quiz"
       - href: conclusion.qmd
 
   page-footer:
