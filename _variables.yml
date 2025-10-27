@@ -3,3 +3,4 @@ tab_title:
   question: "{{< fa circle-question >}}&ensp;Question"
   hint: "{{< fa lightbulb >}}&ensp;Hint"
   solution: "{{< fa circle-check >}}&ensp;Solution"
+  dir: "{{< fa folder-tree >}}&ensp;Directory Structure"

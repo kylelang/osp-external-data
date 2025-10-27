@@ -20,20 +20,27 @@ download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv
 download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
 download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
 
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
 download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
 download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
 download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
 download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
 download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
 ```
 
 R provides two native data formats: `RData` and `RDS`.
 
 ## RData Files
 
-It's a bit misleading to call `RData` files a format for storing datasets. RData files are actually compressed snapshots
-of an R environment. So, when we "load" an RData file, we're not really reading a single dataset; rather, we're
-"restoring" the contents of the environment stored in the file. We use the `load()` function to load RData files.
+It's a bit misleading to characterize the RData format as a tool for storing datasets. RData files are actually
+compressed snapshots of an R environment. So, when we "load" an RData file, we're not really loading a single dataset;
+rather, we're "restoring" the contents of the environment stored in the file. We use the `load()` function to load RData
+files.
 
 ```{r}
 dataDir <- "data"
@@ -55,21 +62,22 @@ datasets. Fortunately, R's other native data format specifically addresses these
 
 ## RDS Files
 
-RDS files are specifically designed to store single R objects. We use the `readRDS()` function to load RDS files.
+RDS files are specifically designed to store single R objects like the data frames we typically use to hold datasets. We
+use the `readRDS()` function to load RDS files.
 
 ```{r}
 titanic <- readRDS(here::here(dataDir, "titanic.rds"))
 head(titanic)
 ```
 
-Notice how the above `readRDS()` call follows the same conventions as the other data ingest functions we've covered.
+Notice how the above `readRDS()` call follows the same conventions as the other data-ingest functions we've covered.
 Most importantly, `readRDS()` returns a single R object, and we assign that object to a variable in our environment.
 
 ::: practice
 
 ## Practice
 
-1. Load the dataset saved as "data/diabetes.rds".
+1. Load the dataset saved as "./data/diabetes.rds".
 1. Use the `str()` function to compare the structure of the dataset you loaded to the `diabetes0` object loaded below.
 
 Are there any differences between these two objects? If so, what are the differences?
@@ -83,7 +91,7 @@ diabetes0 <- read.table(here::here("data", "diabetes.txt"),
                         sep = "\t")
 ```
 
-## {{< var tab_title.hint >}}
+## {{< var tab_title.dir >}}
 
 The following dendrogram illustrates the structure of the working directory for this *webr* session.
 
@@ -91,8 +99,7 @@ The following dendrogram illustrates the structure of the working directory for 
 #| autorun: true
 #| context: output
 
-files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
-data.tree::as.Node(data.frame(pathString = files))
+print(dir_tree)
 ```
 
 ## {{< var tab_title.solution >}}

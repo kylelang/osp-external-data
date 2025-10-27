@@ -24,11 +24,17 @@ download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv
 download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
 download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
 
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
 download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
 download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
 download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
 download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
 download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
 ```
 
 Delimited text files are the simplest type of file that you're likely to encounter when loading datasets into R. The
@@ -39,19 +45,6 @@ While base R provides functions for reading these kinds of files (e.g., `read.ta
 [**readr**][readr] package from the tidyverse provides a superior alternative. Relative to their Base R counterparts,
 the data ingest functions in **readr** are faster, easier to configure, and more transparent in how they parse data.
 
-## Directory Structure
-
-Recall the directory structure we'll be using for this module (shown below). In this tutorial, we'll be loading data
-from the files stored in the `./data/` directory.
-
-```{webr-r}
-#| autorun: true
-#| context: output
-
-files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
-data.tree::as.Node(data.frame(pathString = files))
-```
-
 ## Space-Delimited
 
 We'll first consider *space-delimited* files wherein the data values are separated by a single white space character. We
@@ -59,7 +52,7 @@ can use the `readr::read_delim()` function to load space-delimited files. When c
 options for specifying the delimiter:
 
 1. Let the function detect the delimiter automatically (the default)
-1. Specify the delimiter via the `delim` argument.
+1. Specify the delimiter via the `delim` argument
 
 ```{r}
 library(readr)
@@ -127,6 +120,38 @@ diabetes <- read_tsv(here(dataDir, "diabetes.txt"))
 head(diabetes)
 ```
 
+::: practice
+
+Use `readr::read_delim()` to load the data stored in the tab-delimited file "./data/iris.txt".
+
+:::: {.panel-tabset}
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+iris <- read_delim(here::here("data", "iris.txt"), delim = "\t")
+head(iris)
+```
+
+::::
+
+:::
+
 ## Comma-Separated Values
 
 The *comma-separated values* (CSV) format is one of the most popular delimited file types for storing tabular data. As
@@ -190,6 +215,9 @@ utmb <- read_csv(here(dataDir, "utmb_2017.csv"), col_select = -1)
 head(utmb)
 ```
 
+The `col_select` argument can do much more than we show in the above example. You can use any feature of the
+[**tidyselect** selection language][tidyselect] to include or exclude columns.
+
 ### Column Data Types
 
 By default, `readr` tries to guess the appropriate data type for each column based on the first 1,000 rows. We can use
@@ -230,6 +258,45 @@ head(boys)
 str(boys)
 ```
 
+::: practice
+
+Use `readr::read_csv()` to load the data stored in "./data/iris.csv".
+
+- Format the `Species` column as a factor
+- Remove the `Petal.Width` column while when reading the file.
+- Convert "-88" and "-99" to missing values.
+
+:::: {.panel-tabset}
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+iris <- read_csv(here::here("data", "iris.csv"),
+                 col_types = cols(Species = col_factor()),
+                 col_select = c(-ID, -Petal.Width),
+                 na = c("-88", "-99"))
+head(iris)
+```
+
+::::
+
+:::
+
 ## Base R Options
 
 Base R also includes built-in functions for reading delimited files. The Base R analogue of `readr::read_delim()` is
@@ -258,3 +325,4 @@ head(boys2)
 
 [readr]: https://readr.tidyverse.org/
 [here_package]: https://here.r-lib.org/
+[tidyselect]: https://tidyselect.r-lib.org/reference/language.html
