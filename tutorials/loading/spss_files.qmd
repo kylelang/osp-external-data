@@ -1,20 +1,52 @@
 ---
 title: "SPSS Files"
+webr:
+  packages: ['here', 'data.tree', 'haven']
 ---
 
-```{r, echo=FALSE}
-dataDir <- "data/"
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = TRUE)
 ```
 
-## Loading SPSS Data
+```{webr-r}
+#| autorun: true
+#| context: setup
 
-R can also read files created by other statistical software, such as SPSS, using the `haven` and `labelled` packages.
+dir.create("code")
+dir.create("data")
+dir.create("output")
+dir.create("figures")
 
-The `haven` package, part of the tidyverse, provides a function called `read_spss()` that reads `.sav` files and returns a tibble (a special dataset type typical of the tidyverse), while preserving important metadata like variable labels and value labels.
+download.file("https://openstatprog.com/raw-data/boys.dat", "data/boys.dat")
+download.file("https://openstatprog.com/raw-data/boys.RData", "data/boys.RData")
+download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
+download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
+download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
+download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
+download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
+download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
+```
+
+The `haven` package, part of the tidyverse, provides a function called `read_spss()` that reads `.sav` files and returns
+a tibble (a special dataset type typical of the tidyverse), while preserving important metadata like variable labels and
+value labels.
 
 ```{r}
 library(haven)
-mtcars1 <- read_spss(paste0(dataDir, "mtcars.sav"))
+
+dataDir <- "data"
+
+mtcars1 <- read_spss(here::here(dataDir, "mtcars.sav"))
 ```
 
 We can inspect the metadata using `attributes()`:
@@ -23,7 +55,8 @@ We can inspect the metadata using `attributes()`:
 attributes(mtcars1)
 ```
 
-One feature of `haven` is that it stores labeled SPSS variables as labelled vectors, preserving both the numeric code and its corresponding label. For example:
+One feature of `haven` is that it stores labeled SPSS variables as labelled vectors, preserving both the numeric code
+and its corresponding label. For example:
 
 ```{r}
 mtcars1$am
@@ -34,6 +67,7 @@ To remove value labels (but retain variable labels), we use `labelled::unlabelle
 
 ```{r}
 library(labelled)
+
 mtcars2 <- unlabelled(mtcars1)
 ```
 
@@ -52,25 +86,16 @@ var_label(mtcars2)
 
 ::: {.callout-note}
 
-Note: The `labelled` package provides a suite of utilities to manipulate SPSS-style metadata, including the ability to convert labelled variables, set or remove labels, and prepare data for export back to SPSS or other systems.
+Note: The `labelled` package provides a suite of utilities to manipulate SPSS-style metadata, including the ability to
+convert labelled variables, set or remove labels, and prepare data for export back to SPSS or other systems.
 
 :::
-
-
-```{webr-r}
-#| autorun: true
-#| context: setup
-dir.create("data")
-setwd("/home/web_user/data")
-download.file("https://raw.githubusercontent.com/p3piit/exp_rawdata/main/starwars.sav", "starwars.sav")
-setwd("/home/web_user")
-```
 
 ::: practice
 
 ## Practice
 
-Use the haven::read_spss() function to load the SPSS dataset saved as "starwars.sav" inside the directory data.
+Use the `haven::read_spss()` function to load the SPSS dataset saved as "./data/starwars.sav".
 
 :::: {.panel-tabset}
 ## {{< var tab_title.editor >}}
@@ -78,15 +103,24 @@ Use the haven::read_spss() function to load the SPSS dataset saved as "starwars.
 ```{webr-r}
 ```
 
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
 ## {{< var tab_title.solution >}}
 
-
 ```{r}
-library(haven)
-read_spss("data/starwars.sav")
+starwars <- read_spss(here::here("data", "starwars.sav"))
+head(starwars)
 ```
 ::::
 
 :::
-
 
