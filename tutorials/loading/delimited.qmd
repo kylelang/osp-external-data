@@ -1,8 +1,12 @@
 ---
 title: "Delimited Data"
 webr:
-  packages: ['data.tree']
+  packages: ['data.tree', 'here']
 ---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = TRUE)
+```
 
 ```{webr-r}
 #| autorun: true
@@ -27,10 +31,18 @@ download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.s
 download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
 ```
 
+Delimited text files are the simplest type of file that you're likely to encounter when loading datasets into R. The
+files represent data as plain text where the data values are separated by a specific
+delimiter character: comma, tab, space.
+
+While base R provides functions for reading these kinds of files (e.g., `read.table()`, `read.csv()`), the
+[**readr**][readr] package from the tidyverse provides a superior alternative. Relative to their Base R counterparts,
+the data ingest functions in **readr** are faster, easier to configure, and more transparent in how they parse data.
+
 ## Directory Structure
 
-The following dendrogram shows the contents of the working directory for this *webr* session. Note that we have several
-data files stored in the `./data/` directory.
+Recall the directory structure we'll be using for this module (shown below). In this tutorial, we'll be loading data
+from the files stored in the `./data/` directory.
 
 ```{webr-r}
 #| autorun: true
@@ -40,70 +52,209 @@ files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TR
 data.tree::as.Node(data.frame(pathString = files))
 ```
 
-In the examples that follow, you’ll notice that all file paths are constructed using a variable called `dataDir`. This
-variable is assumed to contain the path to the folder where all data files are stored. For example, if your data files
-are in a folder named `data/`, you might define it like this at the beginning of your script:
+## Space-Delimited
 
-```{r}
-dataDir <- "data/"
-```
+We'll first consider *space-delimited* files wherein the data values are separated by a single white space character. We
+can use the `readr::read_delim()` function to load space-delimited files. When calling `read_delim()` we have two
+options for specifying the delimiter:
 
-## Delimited Data
-
-In any data analysis workflow, one of the first tasks you'll encounter is importing external datasets into R. These
-datasets often come in the form of delimited text files—plain text files where data values are separated by a specific
-character, such as a comma, tab, or space. Each row in the file typically represents one observation, and each field (or
-column) is separated by a delimiter. This format makes the data easy to read, store, and share across software tools.
-
-While base R provides functions for reading these kinds of files (`read.table()`, `read.csv()`, etc.), the `readr`
-package from the tidyverse offers a more modern and consistent approach. It provides functions that are faster, easier
-to configure, and more transparent in how they parse data.
-
-## Reading Space-Delimited Files
-
-We begin by reading a file named `boys.dat`, which contains data where columns are separated by spaces. We use
-`readr::read_delim()` for this purpose. This function allows us to specify any delimiter, but if the file is cleanly
-space-delimited, it can often detect the separator automatically.
+1. Let the function detect the delimiter automatically (the default)
+1. Specify the delimiter via the `delim` argument.
 
 ```{r}
 library(readr)
-boys <- read_delim(paste0(dataDir, "boys.dat"))
-boys
+
+# Read the `boys.dat` file using default arguments and store the ingested values
+# in a data frame called 'boys'
+boys <- read_delim("data/boys.dat")
+
+# Check the result
+head(boys)
+
+# Read the `boys.dat` file with the delimiter specifically defined
+boys <- read_delim("data/boys.dat", delim = " ")
 ```
 
-This command reads the file and assigns the resulting data frame to the object `boys`. We use `paste0()` to construct
-the full file path by combining a directory path (`dataDir`) with the file name.
+When we using `read_delim()` read a file, the function prints an informative message telling us about the delimiter and
+the data types that it detected/used. We should check this message to make sure the auto-detection worked correctly.
+
+```{r}
+# Check the result
+head(boys)
+```
+
+### Good Path Habits
+
+In the example above, we explicitly wrote out the path to the data file we wanted to read (i.e., `"data/boys.dat"`).
+That approach will work, but we can make our lives a lot easier by taking a few steps to improve the portability of our
+code. In the following code chunk, we make two important changes:
+
+1. Create a variable called `dataDir` that contains the relative file path from the root directory of our project to the
+   data folder.
+1. Use the `here()` function from the [**here**][here_package] package to resolve the file path.
+
+```{r, message = FALSE}
+library(here)
+```
+
+```{r}
+dataDir <- "data"
+
+boys <- read_delim(here("data", "boys.dat"))
+head(boys)
+```
+
+## Tab-Delimited
+
+In a *tab-delimited* file the data values are separated by tab characters (`\t`). In the following code chunk, we load a
+file named `diabetes.txt`.
+
+```{r}
+# Let the function auto-detect the delimiter
+diabetes <- read_delim(here(dataDir, "diabetes.txt"))
+head(diabetes)
+
+# Manually explicate the delimiter
+diabetes <- read_delim(here(dataDir, "diabetes.txt"), delim = "\t")
+head(diabetes)
+```
+
+Alternatively, `readr` provides a dedicated function for reading tab-delimited files: `read_tsv()`. This function is
+just a wrapper around `read_delim()` with the delimiter preset to the tab character.
+
+```{r}
+diabetes <- read_tsv(here(dataDir, "diabetes.txt"))
+head(diabetes)
+```
+
+## Comma-Separated Values
+
+The *comma-separated values* (CSV) format is one of the most popular delimited file types for storing tabular data. As
+the name implies, the data values are separated by commas. We can use the `readr::read_delim()` function with `delim =
+","`, but it's more convenient to use the `readr::read_csv()` wrapper function.
+
+```{r}
+utmb <- read_delim(here(dataDir, "utmb_2017.csv"), delim = ",")
+head(utmb)
+
+utmb <- read_csv(here(dataDir, "utmb_2017.csv"))
+head(utmb)
+```
+### Trouble with Locales
+
+The CSV format was developed in the United States where the period/full-stop character is used as the decimal separator.
+In countries that use the comma character to denote decimals (e.g., most European countries), it doesn't make much sense
+to separate data fields with commas. In these countries, CSV files use semicolons as the delimiter (though the file type
+is still called *comma*-separated, unfortunately).
+
+```{r}
+boys <- read_csv(here(dataDir, "boys_eu.csv"))
+
+head(boys) # Oops...that doesn't look right
+```
+
+To read these type of EU-formatted CSV files, we can use the `read_csv2()` function.
+
+```{r}
+boys <- read_csv2(here(dataDir, "boys_eu.csv"))
+head(boys)
+```
+
+## Formatting Options
+
+Some files contain known formatting issues that we'd like to correct as quickly as possible. The **readr** data ingest
+functions contain many options that we can use to apply various formatting corrections when reading the data file.
+
+### Missing Values
 
 In many datasets, missing values are represented by placeholder codes, such as `-999`. We can instruct `read_delim()` to
-interpret such codes as `NA` by specifying the `na` argument:
+interpret such codes as `NA` by supply a vector of missing data codes for the `na` argument:
 
 ```{r}
-boys <- read_delim(paste0(dataDir, "boys.dat"), na = "-999")
-boys
+boys <- read_delim(here(dataDir, "boys.dat"), na = "-999")
+head(boys)
 ```
 
-Another common format is the tab-delimited text file, where columns are separated by tab characters (`\t`). We load a
-file named `diabetes.txt`, again using `read_delim()`, but this time we specify the delimiter explicitly:
+Notice how all the "-999" values have been replaced by `NA` (R's native missing data code). R will now correctly
+recognize these cells as missing values and treat them appropriately.
+
+### Selecting Columns
+
+Some files contain columns that we really don't care about and would rather just throw out immediately. For example, the
+first data column often contains an unnecessary row index. With **readr**, we can use the `col_select` argument to drop
+these columns directly when we read the data.
 
 ```{r}
-diabetes <- read_delim(paste0(dataDir, "diabetes.txt"), delim = "\t")
-diabetes
+# Drop the first column when reading the file
+utmb <- read_csv(here(dataDir, "utmb_2017.csv"), col_select = -1)
+head(utmb)
 ```
 
-Alternatively, `readr` provides a dedicated function for tab-separated files: `read_tsv()`. This is a wrapper around
-`read_delim()` with the delimiter preset to tab, making the syntax slightly cleaner:
+### Column Data Types
+
+By default, `readr` tries to guess the appropriate data type for each column based on the first 1,000 rows. We can use
+the `spec()` function to check how any **readr** data ingest function parsed each column (i.e., which data types the
+function assigned).
 
 ```{r}
-diabetes <- read_tsv(paste0(dataDir, "diabetes.txt"))
-diabetes
+spec(utmb)
 ```
 
-We can also use the base R functions for reading tabular data, the more general being `read.table()`
+While the auto-typing process is often correct, it's not infallible. For more control, we can explicitly define column
+types using the `col_types` argument, which accepts a specification created using `cols()` and type constructors such as
+`col_character()`, `col_integer()`, and `col_factor()`:
 
 ```{r}
-diabetes2 <- read.table(paste0(dataDir, "diabetes.txt"),
+utmb <- read_csv(
+  file       = here(dataDir, "utmb_2017.csv"),
+  col_select = -1,
+  col_types  = cols(
+    bib         = col_character(),
+    category    = col_factor(),
+    rank        = col_integer(),
+    nationality = col_factor()
+  )
+)
+head(utmb)
+
+# Check the data structure
+str(utmb)
+```
+
+We can also use a compact string format, where each character represents the type of a column (e.g., `"d"` = double,
+`"f"` = factor).
+
+```{r}
+boys <- read_csv2(here(dataDir, "boys.csv"), col_types = "dddddffdf")
+head(boys)
+str(boys)
+```
+
+## Base R Options
+
+Base R also includes built-in functions for reading delimited files. The Base R analogue of `readr::read_delim()` is
+`read.table()`. The `read.table()` function won't attempt to auto-detect the delimiter, so we need to explicitly specify
+the delimiter character via the `sep` argument.
+
+```{r}
+diabetes2 <- read.table(here(dataDir, "diabetes.txt"),
                         header = TRUE,
                         sep = "\t")
+head(diabetes2)
 ```
 
+For CSV files, the `read.csv()` and `read.csv2()` functions are wrappers around `read.table()` that will read
+US-formatted and EU-formatted CSV files.
 
+```{r}
+# Standard comma-separated CSV file
+utmb2 <- read.csv(here(dataDir, "utmb_2017.csv"))
+head(utmb2)
+
+# CSV with semicolons as delimiters
+boys2 <- read.csv2(here(dataDir, "boys_eu.csv"))
+head(boys2)
+```
+
+[readr]: https://readr.tidyverse.org/
+[here_package]: https://here.r-lib.org/

@@ -31,10 +31,8 @@ website:
       - href: index.qmd
         text: "Overview"
       - section: tutorials/loading/index.qmd
-        text: "Loading Data"
         contents:
         - href: tutorials/loading/delimited.qmd
-        - href: tutorials/loading/csv_files.qmd
         - href: tutorials/loading/r_data.qmd
         - href: tutorials/loading/spss_files.qmd
         - href: tutorials/loading/excel_files.qmd

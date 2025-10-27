@@ -1,42 +1,92 @@
 ---
-title: "Module Template"
+title: "External Data"
 page-navigation: false
 format:
   html: 
     toc: false
+webr:
+  packages: 'data.tree'
 ---
 
 ```{r, echo = FALSE, include = FALSE}
 source(here::here("R", "buttons.R"))
 ```
 
-Welcome to our template module. Every module comprises a series of topical *tutorials*, such as the three linked below.
+```{webr-r}
+#| autorun: true
+#| context: setup
 
-1. [First Topic](/tutorials/loading_data/index.qmd)
-1. [Second Topic](/tutorials/second_tutorial/index.qmd)
+dir.create("code")
+dir.create("data")
+dir.create("output")
+dir.create("figures")
 
-Each tutorial will comprise a series of interactive lessons with practice problems embedded throughout. Each tutorial
-section should be wrapped up with a knowledge quiz.
+download.file("https://openstatprog.com/raw-data/boys.dat", "data/boys.dat")
+download.file("https://openstatprog.com/raw-data/boys.RData", "data/boys.RData")
+download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
+
+download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
+download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
+download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
+download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
+download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+```
+
+Welcome to the *External Data* module. In this module you will learn how to use external datasets in your R analyses.
+We will first cover methods for loading datasets stored in the most common formats. We will also go over methods for
+saving R objects in popular file formats.
+
+1. [Loading Data](/tutorials/loading/index.qmd)
+1. [Saving Data](/tutorials/saving/index.qmd)
 
 ## Learning Goals
 
 After completing this module, you will be able to:
 
-### Tutorial 1
+### Loading Data
 
-1. A thing you should learn from Tutorial 1.
-1. Another thing you should learn from Tutorial 1.
-1. One more thing you should learn From Tutorial 1.
+Load data stored as:
 
-### Tutorial 2
+1. Delimited text files (e.g., tab-delimited, CSV)
+1. R data files
+1. SPSS data files
+1. Excel workbooks
 
-1. A thing you should learn from Tutorial 2.
-1. Another thing you should learn from Tutorial 2.
+### Writing Data
+
+Save R objects as the following file types:
+
+1. Delimited text files (e.g., tab-delimited, CSV)
+1. R data files
+1. SPSS data files
+1. Excel workbooks
+
+## Directory Structure
+
+This module is all about reading and writing data files to and from your computer's hard drive That focus presents a bit
+of a technical problem. The *webr* sessions in which you complete the exercises for these tutorials runs directly in
+your browser and cannot access your computer's actual file system. So, we've created a synthetic directory structure
+for your use in this module's practice problems. The following dendrogram shows the contents of the working directory
+for the *webr* sessions that you'll be using in this module. Note the data files stored in the `./data/` directory:
+those are the files we'll be loading in the first tutorial.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+data.tree::as.Node(data.frame(pathString = files))
+```
+
+------------------------------------------------------------------------------------------------------------------------
 
 Click the button below to get started with the first tutorial.
 
 ```{r}
 #| echo: false
 #| results: asis
-begin_button("/tutorials/first_tutorial/index.html")
+begin_button("/tutorials/loading/index.html")
 ```
