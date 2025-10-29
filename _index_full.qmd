@@ -39,11 +39,28 @@ dir_tree <- data.tree::as.Node(data.frame(pathString = files))
 ```
 
 Welcome to the *External Data* module. In this module you will learn how to use external datasets in your R analyses.
-We will first cover methods for loading datasets stored in the most common formats.
+We will first cover methods for loading datasets stored in the most common formats. We will also go over methods for
+saving R objects in popular file formats.
+
+1. [Loading Data](/tutorials/loading/index.qmd)
+1. [Saving Data](/tutorials/saving/index.qmd)
 
 ## Learning Goals
 
-After completing this module, you will be able to load data stored as:
+After completing this module, you will be able to:
+
+### Loading Data
+
+Load data stored as:
+
+1. Delimited text files (e.g., tab-delimited, CSV)
+1. R's native data files
+1. SPSS data files
+1. Excel workbooks
+
+### Writing Data
+
+Save R objects as the following file types:
 
 1. Delimited text files (e.g., tab-delimited, CSV)
 1. R's native data files
@@ -52,12 +69,12 @@ After completing this module, you will be able to load data stored as:
 
 ## Directory Structure
 
-This module is all about reading data files from your computer's hard drive. That focus presents a bit of a technical
-problem. The *webr* sessions in which you complete the exercises for these tutorials runs directly in your browser and
-cannot access your computer's actual file system. So, we've created a synthetic directory structure for you to use in
-this module's practice problems. The following dendrogram shows the contents of the working directory for the *webr*
-sessions that you'll be using in this module. Note the data files stored in the `./data/` directory: those are the files
-we'll be loading in this module.
+This module is all about reading and writing data files to and from your computer's hard drive That focus presents a bit
+of a technical problem. The *webr* sessions in which you complete the exercises for these tutorials runs directly in
+your browser and cannot access your computer's actual file system. So, we've created a synthetic directory structure
+for your use in this module's practice problems. The following dendrogram shows the contents of the working directory
+for the *webr* sessions that you'll be using in this module. Note the data files stored in the `./data/` directory:
+those are the files we'll be loading in the first tutorial.
 
 ```{webr-r}
 #| autorun: true
@@ -68,7 +85,7 @@ print(dir_tree)
 
 ------------------------------------------------------------------------------------------------------------------------
 
-Click the button below to get started.
+Click the button below to get started with the first tutorial.
 
 ```{r}
 #| echo: false

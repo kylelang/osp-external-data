@@ -1,0 +1,12 @@
+---
+title: "Loading Data"
+---
+
+Before we can do any data analysis, we need some data to analyze. So, one of the first steps in any real-world data
+analysis project will be loading/reading/ingesting data. In this tutorial, we explore methods for loading data stored in
+some of the most common file formats used for storing datasets:
+
+- Delimited text
+- R's native data formats
+- SPSS data files
+- Excel workbooks

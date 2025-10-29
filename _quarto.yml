@@ -2,9 +2,6 @@ project:
   type: website
   execute-dir: project
   output-dir: docs
-  resources:
-    - data/diabetes.rds
-
 
 format:
   html:

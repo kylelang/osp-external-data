@@ -4,6 +4,8 @@
 
 renv::restore()
 
+renv::install("data.tree")
+
 # renv::status()
 # renv::update()
 # renv::snapshot()

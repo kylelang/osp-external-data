@@ -1,0 +1,152 @@
+---
+title: "Native Data Formats"
+webr:
+  packages: ['data.tree', 'here']
+---
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+
+dir.create("code")
+dir.create("data")
+dir.create("output")
+dir.create("figures")
+
+download.file("https://openstatprog.com/raw-data/boys.dat", "data/boys.dat")
+download.file("https://openstatprog.com/raw-data/boys.RData", "data/boys.RData")
+download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
+download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
+download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
+download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
+download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
+download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
+```
+
+R provides two native data formats: `RData` and `RDS`.
+
+## RData Files
+
+Although we can certain store datasets as RData files, it's a bit misleading to characterize the RData format as a tool
+for storing datasets. RData files are actually compressed snapshots of an entire R environment. So, when we "load" an RData
+file, we're not really loading a single dataset; rather, we're "restoring" the contents of the environment stored in the
+file. Of course, the environment we restore may contain only a single datasets, in which case the end result will be
+functional equivalent to loading that dataset. It's worth remembering, though, that the RData format is a more general
+tool than we need for this job.
+
+We use the `load()` function to load RData files. In the following code chunk, we load the `"boys.RData"` object. This
+file contains only a single data frame called `boys`.
+
+```{r}
+dataDir <- "data"
+
+# List the contents of the current environment
+ls()
+
+# Load the objects stored in 'boys.RData'
+load(here::here(dataDir, "boys.RData"))
+
+# Now we have a new data frame in our environment
+ls()
+head(boys)
+```
+
+Notice that we don't assign the return value of `load()` to an object. When we run `load()`, we simply add all the
+objects stored therein to our current environment. Hence, RData files are best suited to capturing an instantaneous
+*snapshot* of your current R session so that you can exactly restore the current state of your environment sometime in
+the future.
+
+In the following code chunk, we use an RData object to restore the snapshot of a previous R session.
+
+```{r}
+# The environment contains only the objects we loaded in the last example
+ls()
+
+# Load the objects stored in 'snapshot.RData'
+load(here::here(dataDir, "snapshot.RData"))
+
+# Now, we've added several new objects to our session
+ls()
+```
+
+After we restore the objects stored in "snapshot.RData", we add two new datasets, `iris` and `attitude`, but we also
+restore a set of regression model results, `out`, and a ggplot object, `p1`.
+
+```{r}
+str(iris)
+str(attitude)
+summary(out)
+print(p1)
+```
+
+We could now pick up with our previous analysis exactly where we left off when we created "snapshot.RData".
+
+## RDS Files
+
+RData files are much better for the kind of "back-up and restore" operations that we see in the preceding example than
+they are for storing individual datasets. Fortunately, R has a second native data format that is ideally suited for
+storing datasets. RDS files are specifically designed to store single R objects like the data frames we typically use to
+hold datasets. We use the `readRDS()` function to load RDS files.
+
+```{r}
+titanic <- readRDS(here::here(dataDir, "titanic.rds"))
+str(titanic)
+```
+
+Notice how the `readRDS()` call follows the same conventions as the other data-ingest functions we've covered. Most
+importantly, `readRDS()` returns a single R object, and we assign that object to a variable in our environment.
+
+::: practice
+
+1. Load the dataset saved as "./data/diabetes.rds".
+1. Use the `str()` function to compare the structure of the dataset you loaded to the `diabetes0` object loaded below.
+
+Are there any differences between these two objects? If so, what are the differences?
+
+:::: {.panel-tabset}
+
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+diabetes0 <- read.table(here::here("data", "diabetes.txt"),
+                        header = TRUE,
+                        sep = "\t")
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+diabetes0 <- read.table(here::here("data", "diabetes.txt"), header = TRUE, sep = "\t")
+diabetes1 <- readRDS(here::here("data", "diabetes.rds"))
+str(diabetes0)
+str(diabetes1)
+```
+
+The main difference between these two objects lies in the fact that `diabetes1` preserves all the R-specific formatting.
+Notably, the `sex` variable is stored as a two-level factor in `diabetes1`. In `diabetes0`, on the other hand, `sex` is
+a character vector. 
+
+::::
+
+:::

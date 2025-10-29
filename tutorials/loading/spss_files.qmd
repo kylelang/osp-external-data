@@ -1,0 +1,167 @@
+---
+title: "SPSS Files"
+webr:
+  packages: ['here', 'data.tree', 'haven', 'labelled']
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = TRUE)
+library(labelled)
+```
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+
+dir.create("code")
+dir.create("data")
+dir.create("output")
+dir.create("figures")
+
+download.file("https://openstatprog.com/raw-data/boys.dat", "data/boys.dat")
+download.file("https://openstatprog.com/raw-data/boys.RData", "data/boys.RData")
+download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
+download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
+download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
+download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
+download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
+download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
+```
+
+In many research areas, especially the social and behavior sciences, datasets are stored and distributed using the
+native SPSS data format, *SAV*. So, there's a reasonable chance that you'll need to work with SAV files at some point in
+your data analytic career. Fortunately, the [**haven**][haven] and [**labelled**][labelled] packages provide a powerful
+set of tools for working with data stored in SAV files.
+
+We use the `haven::read_spss()` function to load data from SAV files.
+
+```{r}
+library(haven)
+
+dataDir <- "data"
+
+mtcars1 <- read_spss(here::here(dataDir, "mtcars.sav"))
+```
+
+SAV files contain some very useful metadata like variable labels (i.e., short description of a variable) and
+value labels (i.e., meaningful labels for the numeric levels of a variable). These metadata act as a built-in codebook
+for the dataset, so we'd really like to preserve this information when we read the data into R.
+
+Fortunately, `read_spss()` preserves this information by representing numeric variables as *labelled vectors*. For
+example, when we print the `am` column in the following code chunk, you'll notice several additional pieces of
+information printed alongside the variable's actual values.
+
+```{r}
+mtcars1$am
+```
+
+Labelled vectors are very similar to factors: the underlying data values are stored as a numeric vector, and each unique
+numeric value is paired with a descriptive value label. Unlike factors, however, labelled vectors are meant to store
+numeric data. So, R will treat labelled vectors like numeric vectors for analysis.
+
+```{r, warning = TRUE}
+# R is happy to analyze labelled vectors as numeric data
+mean(mtcars1$am)
+
+# We can't do numeric calculations with factors
+am_factor <- as.factor(mtcars$am)
+mean(am_factor)
+```
+
+We can use the `attributes()` function to list all the attributes attached to the `am` column.
+
+```{r}
+attributes(mtcars1$am)
+```
+
+In this case, we are most interested in the `label` and `labels` fields that show the *variable label*, and *value
+labels*, respectively.
+
+### Manipulating Labelled Vectors
+
+The **labelled** package provides a suite of utilities for manipulating the metadata of labelled vectors, including the
+add, remove, or modify labels. We won't cover these features in details here, but we'll consider some of the basic
+options.
+
+We may not care about the individual value labels. If so, we can remove the value labels (but retain the variable
+labels), with the `labelled::unlabelled()` function.
+
+```{r}
+library(labelled)
+
+mtcars2 <- unlabelled(mtcars1)
+```
+
+If we compare `mtcars1` and `mtcars2`, we see that all the value labels are gone in `mtcars2`.
+
+```{r}
+val_labels(mtcars1)
+val_labels(mtcars2)
+```
+
+The variable labels are still present in both datasets, though.
+
+```{r}
+var_label(mtcars1)
+var_label(mtcars2)
+```
+
+::: practice
+
+Use the `haven::read_spss()` function to load the SPSS dataset saved as "./data/starwars.sav".
+
+- What is the variable label for the `birth_year` column?
+- What are the value labels for the `sex` column?
+
+:::: {.panel-tabset}
+
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+starwars <- read_spss(here::here("data", "starwars.sav"))
+head(starwars)
+```
+
+Variable label for `birth_year`:
+
+```{r}
+var_label(starwars$birth_year)
+```
+
+Value labels for `sex`:
+
+```{r}
+val_labels(starwars$sex)
+```
+::::
+
+:::
+
+[haven]: https://haven.tidyverse.org/
+[labelled]: https://larmarange.github.io/labelled/index.html

@@ -1,0 +1,227 @@
+---
+title: "Excel Files"
+webr:
+  packages: ['here', 'data.tree', 'readxl', 'openxlsx']
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+```{webr-r}
+#| autorun: true
+#| context: setup
+
+dir.create("code")
+dir.create("data")
+dir.create("output")
+dir.create("figures")
+
+download.file("https://openstatprog.com/raw-data/boys.dat", "data/boys.dat")
+download.file("https://openstatprog.com/raw-data/boys.RData", "data/boys.RData")
+download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
+
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/iris.csv")
+
+download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
+download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
+download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
+download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
+download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files    <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
+```
+
+To wrap up our discussion of data-ingest methods, we'll consider Microsoft Excel workbooks. Many datasets, especially
+those shared outside of academia, are stored and distributed as Excel workbooks. Thankfully, when you encounter such
+datasets, you'll have no problems loading the data because several R packages allow us to work with Excel workbooks.
+
+For quick-and-easy data-ingest from an Excel workbook, the [**readxl**][readxl] package is a good option. We can load
+data from an Excel workbook with the `readxl::read_excel()` function.
+
+```{r}
+library(readxl)
+
+dataDir <- "data"
+
+titanic1 <- read_excel(here::here(dataDir, "example_data.xlsx"), sheet = "titanic")
+head(titanic1)
+```
+
+Notice that we need to specify which sheet holds our target data via the `sheet` argument. If we don't specify a value
+for the `sheet` argument, `read_excel()` will read from the first sheet in the workbook.
+
+If we only need to load data, then **readxl** will usually suffice, but we won't be able to save data back to an XLSX
+workbook with **readxl** functions. So, if we want to write data back to an Excel workbook, we should consider a using
+different package. The [**openxlsx**][openxlsx] package is a good option.
+
+The procedure for reading data with **openxlsx** is almost identical to what we did with **readxl**. In this case, we
+use the `openxslx::read.xlsx()` function.
+
+```{r}
+library(openxlsx)
+
+titanic2 <- read.xlsx(here::here(dataDir, "example_data.xlsx"), sheet = "titanic")
+head(titanic2)
+```
+
+When we compare the two datasets, we see that they return functional equivalent objects. The only notable difference is
+that `readxl::read_excel()` returns a *tibble* while `openxlsx::read.xlsx()` returns a Base R data frame.
+
+```{r}
+str(titanic1)
+str(titanic2)
+
+# Convert 'titanic1' from a tibble to an ordinary data frame
+titanic1.2 <- as.data.frame(titanic1)
+
+# Are the two objects equivalent?
+all.equal(titanic1.2, titanic2)
+```
+
+::: practice
+
+Use both `readxl::read_excel()` and `openxlsx::read.xlsx()` to load the data from the "diabetes" sheet in the Excel
+workbook stored as "./data/example_data.xlsx".
+
+:::: {.panel-tabset}
+
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r}
+diabetes1 <- read_excel(here::here("data", "example_data.xlsx"),
+                        sheet = "diabetes")
+head(diabetes1)
+
+diabetes2 <- read.xlsx(here::here("data", "example_data.xlsx"),
+                      sheet = "diabetes")
+head(diabetes2)
+```
+::::
+
+:::
+
+### Loading Specific Cells
+
+In addition to selecting the sheet from which we want to read our dataset, we can also specify the range of cells within
+that sheet that we want to read. This capability is particularly useful because Excel workbooks are typically organized
+as interactive spreadsheets that include additional, arbitrarily organized metadata cells and formula cells. These
+additional cells often violate the regular grid structure that we assume for a rectangular datasets.
+
+For example, the following image shows the "exam_results" sheet from the "./data/example_data.xlsx" workbook. This sheet
+contains an interactive spreadsheet that summarizes the results of a hypothetical exam. Notice how the sheet contains
+nine leading rows and six trailing rows of metadata surrounding the 31 rows of individual exam results (and column
+names). If we're interested in the individual exam results, the extra metadata rows will cause problems.
+
+![](/assets/images/exam_results_sheet.png)
+
+If we try to read all the data in this sheet, we get the following results.
+
+```{r}
+res1 <- read_excel(here::here(dataDir, "example_data.xlsx"),
+                   sheet = "exam_results")
+res1
+colnames(res1)
+
+res2 <- read.xlsx(here::here(dataDir, "example_data.xlsx"),
+                  sheet = "exam_results")
+res2
+colnames(res2)
+```
+
+The extra metadata rows break the rectangular grid structure and interfere with our ability to access the individual
+exam results. Furthermore, the first row of metadata is interpreted as column names, which doesn't make any sense in
+this case.
+
+Fortunately, both `read_excel()` and `read.xlsx()` provide options for restricting the range of cells that we read. In
+the following code chunks, we use the `range` and `rows` arguments to read only the rectangular grid of individual exam
+results.
+
+```{r}
+res1 <- read_excel(here::here(dataDir, "example_data.xlsx"),
+                   sheet = "exam_results",
+                   range = "A10:H30")
+res1
+colnames(res1)
+
+res2 <- read.xlsx(here::here(dataDir, "example_data.xlsx"),
+                  sheet = "exam_results",
+                  rows = 10:40)
+res2
+colnames(res2)
+```
+
+That's better! Now, we have nice rectangular data frames containing only the interesting data.
+
+::: practice
+
+1. Use the `openxlsx::read.xlsx()` function to load the first 100 rows (not counting column names) of the first 4
+   columns from the 'diabetes' sheet in the Excel workbook stored as "./data/example_data.xlsx".
+1. Use the `readxl::read_excel()` function with an appropriate specification for the `range` argument to load the chunk
+   of data beginning on Row 3 and Column 2 and ending on Row 100 and Column 7 from the 'titanic' sheet in
+   "./data/example_data.xlsx".
+
+:::: {.panel-tabset}
+
+## {{< var tab_title.editor >}}
+
+```{webr-r}
+```
+
+## {{< var tab_title.dir >}}
+
+The following dendrogram illustrates the structure of the working directory for this *webr* session.
+
+```{webr-r}
+#| autorun: true
+#| context: output
+
+print(dir_tree)
+```
+
+## {{< var tab_title.solution >}}
+
+```{r, message = FALSE}
+diabetes <- read.xlsx(here::here("data", "example_data.xlsx"),
+                      sheet = "diabetes",
+                      rows = 1:101,
+                      cols = 1:4)
+head(diabetes)
+
+titanic3 <- read_excel(here::here("data", "example_data.xlsx"),
+                       sheet = "titanic",
+                       range = "B3:G100",
+                       col_names = FALSE)
+head(titanic3)
+```
+
+*NOTE:* In the `read_excel()` call, we set `col_names = FALSE` to keep the function from converting the first row of
+data into column names.
+
+::::
+
+:::
+
+[readxl]: https://readxl.tidyverse.org/
+[openxlsx]: https://cran.r-project.org/web/packages/openxlsx/index.html
