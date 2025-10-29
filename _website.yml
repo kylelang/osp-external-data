@@ -38,13 +38,13 @@ website:
         - href: tutorials/loading/excel_files.qmd
         - href: quizzes/loading/index.qmd
           text: "Knowledge Quiz"
-      - section: tutorials/saving/index.qmd
-        text: "Saving Data"
-        contents:
-        - href: tutorials/saving/topic1.qmd
-        - href: tutorials/saving/topic2.qmd
-        - href: quizzes/saving/index.qmd
-          text: "Knowledge Quiz"
+      # - section: tutorials/saving/index.qmd
+      #   text: "Saving Data"
+      #   contents:
+      #   - href: tutorials/saving/topic1.qmd
+      #   - href: tutorials/saving/topic2.qmd
+      #   - href: quizzes/saving/index.qmd
+      #     text: "Knowledge Quiz"
       - href: conclusion.qmd
 
   page-footer:

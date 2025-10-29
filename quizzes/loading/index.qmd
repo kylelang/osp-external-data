@@ -11,7 +11,7 @@ title: "Knowledge Quiz: Loading Data"
 
 :::
 
-```{r quiz1}
+```{r loading_quiz}
 #| echo: FALSE
 #| results: "asis"
 

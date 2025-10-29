@@ -11,16 +11,19 @@ format:
 source(here::here("R", "buttons.R"))
 ```
 
-Use this page to provide some kind of brief wrap-up.
+Now that you've completed the *External Data* module, you should be comfortable loading external datasets stored in
+various popular file formats.
 
 ## Next Steps
 
-If your module feeds naturally into another, link that module through the button below as a suggestion for further study.
-
-- Here, we're linking to the *First Steps* module.
+Since you're now able to access real-world datasets in your R sessions, it's time to start exploring methods for 
+processing and manipulating those datasets. We recommend following the *Data Manipulation* module next. Click the button
+below to head over there now.
 
 ```{r}
 #| echo: false
 #| results: asis
-next_module_button("https://www.openstatprog.com/first-steps/")
+
+# next_module_button("https://www.openstatprog.com/data-manipulation/")
+next_module_button("in_progress.html")
 ```
