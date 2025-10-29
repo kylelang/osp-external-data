@@ -7,6 +7,6 @@ analysis project will be loading/reading/ingesting data. In this tutorial, we ex
 some of the most common file formats used for storing datasets:
 
 - Delimited text
-- R data files
+- R's native data formats
 - SPSS data files
 - Excel workbooks

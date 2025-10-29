@@ -33,6 +33,9 @@ download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017
 download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")
 download.file("https://openstatprog.com/raw-data/starwars.sav", "data/starwars.sav")
 download.file("https://openstatprog.com/raw-data/example_data.xlsx", "data/example_data.xlsx")
+
+files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
+dir_tree <- data.tree::as.Node(data.frame(pathString = files))
 ```
 
 Welcome to the *External Data* module. In this module you will learn how to use external datasets in your R analyses.
@@ -51,7 +54,7 @@ After completing this module, you will be able to:
 Load data stored as:
 
 1. Delimited text files (e.g., tab-delimited, CSV)
-1. R data files
+1. R's native data files
 1. SPSS data files
 1. Excel workbooks
 
@@ -60,7 +63,7 @@ Load data stored as:
 Save R objects as the following file types:
 
 1. Delimited text files (e.g., tab-delimited, CSV)
-1. R data files
+1. R's native data files
 1. SPSS data files
 1. Excel workbooks
 
@@ -77,8 +80,7 @@ those are the files we'll be loading in the first tutorial.
 #| autorun: true
 #| context: output
 
-files <- list.files("./", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)
-data.tree::as.Node(data.frame(pathString = files))
+print(dir_tree)
 ```
 
 ------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,50 @@
+Question
+========
+
+Which of the following expressions will read the space-delimited file `"info.dat"`?
+
+* Assume that all the necessary packages are already loaded.
+* Assume the working directory has the following structure.
+
+![](/assets/images/dir_tree.png){width=45%}
+
+Answerlist
+----------
+
+* `read_delim("data/info.dat")`
+* `read_delim(here::here("data", "info.dat"), delim = " ")`
+* `read.table(here::here("data", "info.dat"), header = TRUE, sep= " ")`
+* `read.table(here::here("data", "info.dat"), header = TRUE)`
+* `read_delim(here::here("data", "info.dat"), delim = "\t")`
+* `read_delim(here::here("data", "info.dat"), sep= " ")`
+* `read.table(here::here("data", "info.dat"), sep= "\t")`
+* `read_tsv(here::here("data", "info.dat"), delim = " ")`
+* `read_delim(here::here("info.dat"))`
+* `read_delim(here::here("info.dat"), delim = " ")`
+* `read.table(here::here("info.dat"), header = TRUE, sep= " ")`
+
+Solution
+========
+
+Answerlist
+----------
+
+* CORRECT: `read_delim()` is the correct **tidyverse** function. Here, we use suitable default options.
+* CORRECT: `read_delim()` is the correct **tidyverse** function. Here, we specify the space character as the delimiter.
+* CORRECT: `read.table()` is the correct Base R function. Here, we specify the space character as the delimiter.
+* CORRECT: `read.table()` is the correct Base R function.
+* INCORRECT: The delimiter is the space character, not the tab character.
+* INCORRECT: To specify the delimiter in `read_delim()` the correct argument is `delim`, not `sep`.
+* INCORRECT: The delimiter in the file is the space, not the tab.
+* INCORRECT: The function `read_tsv()` is for reading tab-delimited files.
+* INCORRECT: The file path is wrong.
+* INCORRECT: The file path is wrong.
+* INCORRECT: The file path is wrong.
+
+Meta-information
+================
+
+exname: Loading Delimited Data
+extype: mchoice
+exsolution: 11110000000
+exshuffle: 5

@@ -17,9 +17,7 @@ title: "Knowledge Quiz: Loading Data"
 
 exams2forms::exams2forms(
   file = list(
-    "loading_del.Rmd",
-    "loading_csv.Rmd",
-    "label_spss.Rmd"
+    "delimited.Rmd"
   ),
   edir = here::here("quizzes", "loading", "questions")
 )

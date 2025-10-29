@@ -42,8 +42,9 @@ files represent data as plain text where the data values are separated by a spec
 delimiter character: comma, tab, space.
 
 While base R provides functions for reading these kinds of files (e.g., `read.table()`, `read.csv()`), the
-[**readr**][readr] package from the tidyverse provides a superior alternative. Relative to their Base R counterparts,
-the data ingest functions in **readr** are faster, easier to configure, and more transparent in how they parse data.
+[**readr**][readr] package from the [**tidyverse**][tidyverse] provides a superior alternative. Relative to their Base R
+counterparts, the data-ingest functions in **readr** are faster, easier to configure, and more transparent in how they
+parse data.
 
 ## Space-Delimited
 
@@ -60,18 +61,23 @@ library(readr)
 # Read the `boys.dat` file using default arguments and store the ingested values
 # in a data frame called 'boys'
 boys <- read_delim("data/boys.dat")
-
-# Check the result
-head(boys)
-
-# Read the `boys.dat` file with the delimiter specifically defined
-boys <- read_delim("data/boys.dat", delim = " ")
 ```
 
 When we using `read_delim()` read a file, the function prints an informative message telling us about the delimiter and
 the data types that it detected/used. We should check this message to make sure the auto-detection worked correctly.
 
 ```{r}
+# Check the result
+head(boys)
+```
+
+Notice that `read_delim()` returns a *tibble* and not an ordinary data frame. Tibbles are just slightly fancier flavor
+of data frame used by tidyverse packages. For our purposes, we can treat tibbles and data frames as equivalent objects.
+
+```{r}
+# Read the `boys.dat` file with the delimiter specifically defined
+boys <- read_delim("data/boys.dat", delim = " ")
+
 # Check the result
 head(boys)
 ```
@@ -125,6 +131,7 @@ head(diabetes)
 Use `readr::read_delim()` to load the data stored in the tab-delimited file "./data/iris.txt".
 
 :::: {.panel-tabset}
+
 ## {{< var tab_title.editor >}}
 
 ```{webr-r}
@@ -187,7 +194,7 @@ head(boys)
 
 ## Formatting Options
 
-Some files contain known formatting issues that we'd like to correct as quickly as possible. The **readr** data ingest
+Some files contain known formatting issues that we'd like to correct as quickly as possible. The **readr** data-ingest
 functions contain many options that we can use to apply various formatting corrections when reading the data file.
 
 ### Missing Values
@@ -221,7 +228,7 @@ The `col_select` argument can do much more than we show in the above example. Yo
 ### Column Data Types
 
 By default, `readr` tries to guess the appropriate data type for each column based on the first 1,000 rows. We can use
-the `spec()` function to check how any **readr** data ingest function parsed each column (i.e., which data types the
+the `spec()` function to check how any **readr** data-ingest function parsed each column (i.e., which data types the
 function assigned).
 
 ```{r}
@@ -267,6 +274,7 @@ Use `readr::read_csv()` to load the data stored in "./data/iris.csv".
 - Convert "-88" and "-99" to missing values.
 
 :::: {.panel-tabset}
+
 ## {{< var tab_title.editor >}}
 
 ```{webr-r}
@@ -324,5 +332,6 @@ head(boys2)
 ```
 
 [readr]: https://readr.tidyverse.org/
+[tidyverse]: https://tidyverse.org/
 [here_package]: https://here.r-lib.org/
 [tidyselect]: https://tidyselect.r-lib.org/reference/language.html
