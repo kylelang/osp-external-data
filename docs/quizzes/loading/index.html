@@ -84,19 +84,6 @@ div.callout-resource.callout-style-default .callout-icon::before, div.callout-re
   content: '\f0c1' !important;
   background-image: none;
 }
-div.callout-reading.callout {
-  border-left-color: purple;
-}
-div.callout-reading.callout-style-default > .callout-header {
-  background-color: rgb(from purple r g b / 13%);
-}
-div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
 div.callout-practice.callout {
   border-left-color: green;
 }
@@ -108,6 +95,19 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f085' !important;
+  background-image: none;
+}
+div.callout-reading.callout {
+  border-left-color: purple;
+}
+div.callout-reading.callout-style-default > .callout-header {
+  background-color: rgb(from purple r g b / 13%);
+}
+div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
   background-image: none;
 }
 div.callout-reading-advanced.callout {
@@ -297,17 +297,17 @@ Note
 <li>Assume the working directory has the following structure.</li>
 </ul>
 <p><img src="../../assets/images/dir_tree.png" class="img-fluid" style="width:45.0%"></p>
-<div id="webex-7bbb447429bfdd30a4bd9783ef688b85" class="webex-checkboxgroup" data-answer="bFJOUxgEGwUeCT8=">
-<label><input type="checkbox" autocomplete="off" name="7bbb447429bfdd30a4bd9783ef688b85"><span><code>read_delim(here::here("info.dat"), delim = " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="7bbb447429bfdd30a4bd9783ef688b85"><span><code>read.table(here::here("data", "info.dat"), header = TRUE, sep= " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="7bbb447429bfdd30a4bd9783ef688b85"><span><code>read_delim(here::here("info.dat"))</code></span></label><label><input type="checkbox" autocomplete="off" name="7bbb447429bfdd30a4bd9783ef688b85"><span><code>read.table(here::here("data", "info.dat"), header = TRUE)</code></span></label><label><input type="checkbox" autocomplete="off" name="7bbb447429bfdd30a4bd9783ef688b85"><span><code>read.table(here::here("info.dat"), header = TRUE, sep= " ")</code></span></label>
+<div id="webex-def46ca457f6d459fa969c44251e4c23" class="webex-checkboxgroup" data-answer="P1RKBBpTTQUZBjs=">
+<label><input type="checkbox" autocomplete="off" name="def46ca457f6d459fa969c44251e4c23"><span><code>read_delim(here::here("data", "info.dat"), delim = " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="def46ca457f6d459fa969c44251e4c23"><span><code>read_delim(here::here("info.dat"), delim = " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="def46ca457f6d459fa969c44251e4c23"><span><code>read_tsv(here::here("data", "info.dat"), delim = " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="def46ca457f6d459fa969c44251e4c23"><span><code>read.table(here::here("data", "info.dat"), header = TRUE, sep= " ")</code></span></label><label><input type="checkbox" autocomplete="off" name="def46ca457f6d459fa969c44251e4c23"><span><code>read.table(here::here("data", "info.dat"), header = TRUE)</code></span></label>
 </div>
 </div>
 <div class="webex-solution">
 <ul>
+<li>CORRECT: <code>read_delim()</code> is the correct <strong>tidyverse</strong> function. Here, we specify the space character as the delimiter.</li>
 <li>INCORRECT: The file path is wrong.</li>
+<li>INCORRECT: The function <code>read_tsv()</code> is for reading tab-delimited files.</li>
 <li>CORRECT: <code>read.table()</code> is the correct Base R function. Here, we specify the space character as the delimiter.</li>
-<li>INCORRECT: The file path is wrong.</li>
 <li>CORRECT: <code>read.table()</code> is the correct Base R function.</li>
-<li>INCORRECT: The file path is wrong.</li>
 </ul>
 </div>
 </div>

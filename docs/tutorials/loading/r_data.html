@@ -404,7 +404,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"options":{"message":"true","classes":"","editor-quick-suggestions":"false","read-only":"false","autorun":"true","dpi":72,"fig-cap":"","warning":"true","comment":"","out-width":"700px","fig-width":7,"editor-word-wrap":"true","editor-font-scale":"1","label":"unnamed-chunk-1","fig-height":5,"output":"true","out-height":"","context":"setup","editor-max-height":"","results":"markup"},"code":"dir.create(\"code\")\ndir.create(\"data\")\ndir.create(\"output\")\ndir.create(\"figures\")\n\ndownload.file(\"https://openstatprog.com/raw-data/boys.dat\", \"data/boys.dat\")\ndownload.file(\"https://openstatprog.com/raw-data/boys.RData\", \"data/boys.RData\")\ndownload.file(\"https://openstatprog.com/raw-data/boys_eu.csv\", \"data/boys_eu.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/diabetes.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.rds\", \"data/diabetes.rds\")\n\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/iris.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/iris.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/titanic.rds\", \"data/titanic.rds\")\ndownload.file(\"https://openstatprog.com/raw-data/utmb_2017.csv\", \"data/utmb_2017.csv\")\ndownload.file(\"https://openstatprog.com/raw-data/mtcars.sav\", \"data/mtcars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/starwars.sav\", \"data/starwars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/example_data.xlsx\", \"data/example_data.xlsx\")\n\nfiles    <- list.files(\"./\", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)\ndir_tree <- data.tree::as.Node(data.frame(pathString = files))"},{"id":2,"options":{"message":"true","classes":"","editor-quick-suggestions":"false","read-only":"false","autorun":"false","dpi":72,"fig-cap":"","warning":"true","comment":"","out-width":"700px","fig-width":7,"editor-word-wrap":"true","editor-font-scale":"1","label":"unnamed-chunk-2","fig-height":5,"output":"true","out-height":"","context":"interactive","editor-max-height":"","results":"markup"},"code":"diabetes0 <- read.table(here::here(\"data\", \"diabetes.txt\"),\n                        header = TRUE,\n                        sep = \"\\t\")"},{"id":3,"options":{"message":"true","classes":"","editor-quick-suggestions":"false","read-only":"false","autorun":"true","dpi":72,"fig-cap":"","warning":"true","comment":"","out-width":"700px","fig-width":7,"editor-word-wrap":"true","editor-font-scale":"1","label":"unnamed-chunk-3","fig-height":5,"output":"true","out-height":"","context":"output","editor-max-height":"","results":"markup"},"code":"print(dir_tree)"}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"dir.create(\"code\")\ndir.create(\"data\")\ndir.create(\"output\")\ndir.create(\"figures\")\n\ndownload.file(\"https://openstatprog.com/raw-data/boys.dat\", \"data/boys.dat\")\ndownload.file(\"https://openstatprog.com/raw-data/boys.RData\", \"data/boys.RData\")\ndownload.file(\"https://openstatprog.com/raw-data/boys_eu.csv\", \"data/boys_eu.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/diabetes.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.rds\", \"data/diabetes.rds\")\n\ndownload.file(\"https://openstatprog.com/raw-data/iris.txt\", \"data/iris.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/iris.csv\", \"data/iris.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/titanic.rds\", \"data/titanic.rds\")\ndownload.file(\"https://openstatprog.com/raw-data/utmb_2017.csv\", \"data/utmb_2017.csv\")\ndownload.file(\"https://openstatprog.com/raw-data/mtcars.sav\", \"data/mtcars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/starwars.sav\", \"data/starwars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/example_data.xlsx\", \"data/example_data.xlsx\")\n\nfiles    <- list.files(\"./\", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)\ndir_tree <- data.tree::as.Node(data.frame(pathString = files))","options":{"autorun":"true","editor-max-height":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","out-height":"","comment":"","warning":"true","output":"true","fig-width":7,"fig-cap":"","editor-word-wrap":"true","dpi":72,"read-only":"false","message":"true","editor-font-scale":"1","context":"setup","label":"unnamed-chunk-1","out-width":"700px"}},{"id":2,"code":"diabetes0 <- read.table(here::here(\"data\", \"diabetes.txt\"),\n                        header = TRUE,\n                        sep = \"\\t\")","options":{"autorun":"false","editor-max-height":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","out-height":"","comment":"","warning":"true","output":"true","fig-width":7,"fig-cap":"","editor-word-wrap":"true","dpi":72,"read-only":"false","message":"true","editor-font-scale":"1","context":"interactive","label":"unnamed-chunk-2","out-width":"700px"}},{"id":3,"code":"print(dir_tree)","options":{"autorun":"true","editor-max-height":"","fig-height":5,"editor-quick-suggestions":"false","classes":"","results":"markup","out-height":"","comment":"","warning":"true","output":"true","fig-width":7,"fig-cap":"","editor-word-wrap":"true","dpi":72,"read-only":"false","message":"true","editor-font-scale":"1","context":"output","label":"unnamed-chunk-3","out-width":"700px"}}];
 
 </script>
 <script type="module">
@@ -1684,19 +1684,6 @@ div.callout-reading.callout-style-default .callout-icon::before, div.callout-rea
   content: '\f518' !important;
   background-image: none;
 }
-div.callout-reading-advanced.callout {
-  border-left-color: red;
-}
-div.callout-reading-advanced.callout-style-default > .callout-header {
-  background-color: rgb(from red r g b / 13%);
-}
-div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
 div.callout-resource.callout {
   border-left-color: orange;
 }
@@ -1708,6 +1695,19 @@ div.callout-resource.callout-style-default .callout-icon::before, div.callout-re
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f0c1' !important;
+  background-image: none;
+}
+div.callout-reading-advanced.callout {
+  border-left-color: red;
+}
+div.callout-reading-advanced.callout-style-default > .callout-header {
+  background-color: rgb(from red r g b / 13%);
+}
+div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
   background-image: none;
 }
 </style>

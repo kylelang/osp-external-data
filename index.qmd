@@ -28,6 +28,9 @@ download.file("https://openstatprog.com/raw-data/boys_eu.csv", "data/boys_eu.csv
 download.file("https://openstatprog.com/raw-data/diabetes.txt", "data/diabetes.txt")
 download.file("https://openstatprog.com/raw-data/diabetes.rds", "data/diabetes.rds")
 
+download.file("https://openstatprog.com/raw-data/iris.txt", "data/iris.txt")
+download.file("https://openstatprog.com/raw-data/iris.csv", "data/iris.csv")
+
 download.file("https://openstatprog.com/raw-data/titanic.rds", "data/titanic.rds")
 download.file("https://openstatprog.com/raw-data/utmb_2017.csv", "data/utmb_2017.csv")
 download.file("https://openstatprog.com/raw-data/mtcars.sav", "data/mtcars.sav")

@@ -69,19 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>
-div.callout-reading.callout {
-  border-left-color: purple;
-}
-div.callout-reading.callout-style-default > .callout-header {
-  background-color: rgb(from purple r g b / 13%);
-}
-div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f518' !important;
-  background-image: none;
-}
 div.callout-reading-advanced.callout {
   border-left-color: red;
 }
@@ -90,6 +77,32 @@ div.callout-reading-advanced.callout-style-default > .callout-header {
 }
 div.callout-reading-advanced .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
 div.callout-reading-advanced.callout-style-default .callout-icon::before, div.callout-reading-advanced.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f518' !important;
+  background-image: none;
+}
+div.callout-practice.callout {
+  border-left-color: green;
+}
+div.callout-practice.callout-style-default > .callout-header {
+  background-color: rgb(from green r g b / 13%);
+}
+div.callout-practice .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-practice.callout-style-default .callout-icon::before, div.callout-practice.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f085' !important;
+  background-image: none;
+}
+div.callout-reading.callout {
+  border-left-color: purple;
+}
+div.callout-reading.callout-style-default > .callout-header {
+  background-color: rgb(from purple r g b / 13%);
+}
+div.callout-reading .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-reading.callout-style-default .callout-icon::before, div.callout-reading.callout-titled .callout-icon::before {
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f518' !important;
@@ -106,19 +119,6 @@ div.callout-resource.callout-style-default .callout-icon::before, div.callout-re
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f0c1' !important;
-  background-image: none;
-}
-div.callout-practice.callout {
-  border-left-color: green;
-}
-div.callout-practice.callout-style-default > .callout-header {
-  background-color: rgb(from green r g b / 13%);
-}
-div.callout-practice .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-practice.callout-style-default .callout-icon::before, div.callout-practice.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f085' !important;
   background-image: none;
 }
 </style>
@@ -290,7 +290,7 @@ Note
 <div class="webex-question">
 <div class="webex-check webex-box">
 <p>Save the data frame <code>girls</code> as a tab-delimited file, called girls.txt inside the folder “data”. Write the <code>NA</code> as empty space, and use the specific function. Assume that all the needed packages are already loaded.</p>
-<p><input class="webex-solveme" id="webex-7e92d9f444875e89217f6bddc55854e4" size="40" data-answer="bEdOQA1NA2tAR04fUgxKVUEdFzoUBgUQAmlSUUdYFhpDHU1uRhVGWlUUBRdpRxhlEBgVOw=="></p>
+<p><input class="webex-solveme" id="webex-514634d64eb1cf599d42681baeb728f2" size="40" data-answer="bhNDRFpAAWlAFhQZBA9HVUpIFG4UXFAWADkFXkBUFRxBSUBqERhEWFVFXxE/RBVlG00Wbw=="></p>
 </div>
 <div class="webex-solution">
 <p>The specific function is <code>write_tsv()</code>, the file will be saved as <code>"data\girls.txt"</code>, and to save the <code>NA</code> as empty space we will need to specify <code>na = " "</code>. So in the end, the expession will be: <code>write_tsv(girls, "data\girls.txt", na = " ")</code></p>
@@ -299,17 +299,17 @@ Note
 <div class="webex-question">
 <div class="webex-check webex-box">
 <p>Witch of the following expressions will save the data frame <code>girls</code> as a single R object and not a workspace file, and be sure to retain the object name. Assume that all the needed packages are already loaded.</p>
-<div id="webex-574b06ef77e94fb5359cb17100d897db" class="webex-radiogroup" data-answer="bgcYUhwGSVcbBzg=">
-<label><input type="radio" autocomplete="off" name="574b06ef77e94fb5359cb17100d897db"><span><code>save(girls,  "girls.RData")</code></span></label><label><input type="radio" autocomplete="off" name="574b06ef77e94fb5359cb17100d897db"><span><code>write_RDS(girls,  "girls.rds")</code></span></label><label><input type="radio" autocomplete="off" name="574b06ef77e94fb5359cb17100d897db"><span><code>saveRDS(girls,  "girls.rds")</code></span></label><label><input type="radio" autocomplete="off" name="574b06ef77e94fb5359cb17100d897db"><span>It is not possible to save a R object as a .rds file while retaining its name</span></label><label><input type="radio" autocomplete="off" name="574b06ef77e94fb5359cb17100d897db"><span><code>save(girls,  "girls.rds")</code></span></label>
+<div id="webex-df33acabf333c1f9c15c9aa1780264cf" class="webex-radiogroup" data-answer="P1YfAk1TTVJKA24=">
+<label><input type="radio" autocomplete="off" name="df33acabf333c1f9c15c9aa1780264cf"><span><code>write_RDS(girls,  "girls.rds")</code></span></label><label><input type="radio" autocomplete="off" name="df33acabf333c1f9c15c9aa1780264cf"><span>It is not possible to save a R object as a .rds file while retaining its name</span></label><label><input type="radio" autocomplete="off" name="df33acabf333c1f9c15c9aa1780264cf"><span><code>write_RDS(girls, retain = TRUE, "girls.rds")</code></span></label><label><input type="radio" autocomplete="off" name="df33acabf333c1f9c15c9aa1780264cf"><span><code>write_sav(girls,  "girls.sav")</code></span></label><label><input type="radio" autocomplete="off" name="df33acabf333c1f9c15c9aa1780264cf"><span><code>save(girls,  "girls.rds")</code></span></label>
 </div>
 </div>
 <div class="webex-solution">
 <p>The default value for the <code>use</code> argument is <code>"everything"</code>.</p>
 <ul>
-<li>Wrong: This will save the data frame as workspace file</li>
 <li>Wrong: The function <code>write_RDS</code> doesn’t exist</li>
-<li>Wrong: This will not save the name of the object</li>
 <li>Correct</li>
+<li>Wrong: The function <code>write_RDS</code> doesn’t exist</li>
+<li>Wrong: This will save the data frame as a .sav file, not an R object</li>
 <li>Wrong: The function <code>save()</code> saves .RData files not .rds files</li>
 </ul>
 </div>

@@ -2,78 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/saving/topic2.html</loc>
-    <lastmod>2025-08-29T07:31:55.489Z</lastmod>
+    <lastmod>2025-10-29T19:58:05.582Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/saving/index.html</loc>
-    <lastmod>2025-08-29T07:31:55.487Z</lastmod>
+    <lastmod>2025-10-29T19:58:05.580Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/loading/r_data.html</loc>
-    <lastmod>2025-10-29T16:33:05.841Z</lastmod>
+    <lastmod>2025-11-18T13:05:29.088Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/loading/excel_files.html</loc>
-    <lastmod>2025-10-29T15:37:54.464Z</lastmod>
+    <lastmod>2025-11-18T13:04:53.091Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/tutorials/loading/csv_files.html</loc>
-    <lastmod>2025-08-29T07:31:55.482Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/saving/questions/write_txt.html</loc>
+    <lastmod>2025-10-29T19:58:05.552Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/saving/questions/save_rds.html</loc>
-    <lastmod>2025-08-29T07:31:55.472Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/saving/index.html</loc>
+    <lastmod>2025-10-29T19:58:05.548Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/spss_labels.html</loc>
-    <lastmod>2025-10-29T18:19:53.027Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/loading_csv.html</loc>
+    <lastmod>2025-10-29T19:58:05.543Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/delimited.html</loc>
-    <lastmod>2025-10-29T17:59:54.648Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/loading/index.html</loc>
+    <lastmod>2025-10-29T19:58:05.539Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.openstatprog.com/external-data/index.html</loc>
+    <lastmod>2025-11-18T13:04:14.394Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.openstatprog.com/external-data/conclusion.html</loc>
+    <lastmod>2025-10-29T19:58:05.101Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/in_progress.html</loc>
     <lastmod>2025-08-29T07:31:55.459Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/conclusion.html</loc>
-    <lastmod>2025-10-29T18:52:49.459Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/delimited.html</loc>
+    <lastmod>2025-10-29T19:58:05.541Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/index.html</loc>
-    <lastmod>2025-10-29T18:35:27.065Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/spss_labels.html</loc>
+    <lastmod>2025-10-29T19:58:05.545Z</lastmod>
   </url>
   <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/loading/index.html</loc>
-    <lastmod>2025-10-29T18:31:11.472Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/loading/questions/loading_csv.html</loc>
-    <lastmod>2025-08-29T07:31:55.468Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/saving/index.html</loc>
-    <lastmod>2025-10-23T12:47:50.446Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.openstatprog.com/external-data/quizzes/saving/questions/write_txt.html</loc>
-    <lastmod>2025-08-29T07:31:55.473Z</lastmod>
+    <loc>https://www.openstatprog.com/external-data/quizzes/saving/questions/save_rds.html</loc>
+    <lastmod>2025-10-29T19:58:05.550Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/loading/delimited.html</loc>
-    <lastmod>2025-10-29T16:43:11.418Z</lastmod>
+    <lastmod>2025-11-18T13:12:07.968Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/loading/index.html</loc>
-    <lastmod>2025-10-29T11:35:47.737Z</lastmod>
+    <lastmod>2025-10-29T19:58:05.568Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/loading/spss_files.html</loc>
-    <lastmod>2025-10-29T15:36:59.368Z</lastmod>
+    <lastmod>2025-11-18T13:05:58.877Z</lastmod>
   </url>
   <url>
     <loc>https://www.openstatprog.com/external-data/tutorials/saving/topic1.html</loc>
-    <lastmod>2025-08-29T07:31:55.488Z</lastmod>
+    <lastmod>2025-10-29T19:58:05.581Z</lastmod>
   </url>
 </urlset>

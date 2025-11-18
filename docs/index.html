@@ -368,7 +368,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"dir.create(\"code\")\ndir.create(\"data\")\ndir.create(\"output\")\ndir.create(\"figures\")\n\ndownload.file(\"https://openstatprog.com/raw-data/boys.dat\", \"data/boys.dat\")\ndownload.file(\"https://openstatprog.com/raw-data/boys.RData\", \"data/boys.RData\")\ndownload.file(\"https://openstatprog.com/raw-data/boys_eu.csv\", \"data/boys_eu.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/diabetes.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.rds\", \"data/diabetes.rds\")\n\ndownload.file(\"https://openstatprog.com/raw-data/titanic.rds\", \"data/titanic.rds\")\ndownload.file(\"https://openstatprog.com/raw-data/utmb_2017.csv\", \"data/utmb_2017.csv\")\ndownload.file(\"https://openstatprog.com/raw-data/mtcars.sav\", \"data/mtcars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/starwars.sav\", \"data/starwars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/example_data.xlsx\", \"data/example_data.xlsx\")\n\nfiles <- list.files(\"./\", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)\ndir_tree <- data.tree::as.Node(data.frame(pathString = files))","options":{"dpi":72,"fig-cap":"","warning":"true","out-width":"700px","editor-quick-suggestions":"false","results":"markup","fig-height":5,"fig-width":7,"editor-font-scale":"1","classes":"","output":"true","context":"setup","message":"true","editor-word-wrap":"true","editor-max-height":"","comment":"","read-only":"false","out-height":"","autorun":"true","label":"unnamed-chunk-1"},"id":1},{"code":"print(dir_tree)","options":{"dpi":72,"fig-cap":"","warning":"true","out-width":"700px","editor-quick-suggestions":"false","results":"markup","fig-height":5,"fig-width":7,"editor-font-scale":"1","classes":"","output":"true","context":"output","message":"true","editor-word-wrap":"true","editor-max-height":"","comment":"","read-only":"false","out-height":"","autorun":"true","label":"unnamed-chunk-2"},"id":2}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"dir.create(\"code\")\ndir.create(\"data\")\ndir.create(\"output\")\ndir.create(\"figures\")\n\ndownload.file(\"https://openstatprog.com/raw-data/boys.dat\", \"data/boys.dat\")\ndownload.file(\"https://openstatprog.com/raw-data/boys.RData\", \"data/boys.RData\")\ndownload.file(\"https://openstatprog.com/raw-data/boys_eu.csv\", \"data/boys_eu.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.txt\", \"data/diabetes.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/diabetes.rds\", \"data/diabetes.rds\")\n\ndownload.file(\"https://openstatprog.com/raw-data/iris.txt\", \"data/iris.txt\")\ndownload.file(\"https://openstatprog.com/raw-data/iris.csv\", \"data/iris.csv\")\n\ndownload.file(\"https://openstatprog.com/raw-data/titanic.rds\", \"data/titanic.rds\")\ndownload.file(\"https://openstatprog.com/raw-data/utmb_2017.csv\", \"data/utmb_2017.csv\")\ndownload.file(\"https://openstatprog.com/raw-data/mtcars.sav\", \"data/mtcars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/starwars.sav\", \"data/starwars.sav\")\ndownload.file(\"https://openstatprog.com/raw-data/example_data.xlsx\", \"data/example_data.xlsx\")\n\nfiles <- list.files(\"./\", recursive = TRUE, include.dirs = TRUE, full.names = TRUE)\ndir_tree <- data.tree::as.Node(data.frame(pathString = files))","options":{"read-only":"false","comment":"","autorun":"true","out-height":"","context":"setup","message":"true","output":"true","dpi":72,"results":"markup","editor-max-height":"","warning":"true","label":"unnamed-chunk-1","classes":"","fig-cap":"","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","editor-font-scale":"1","fig-height":5,"editor-word-wrap":"true"}},{"id":2,"code":"print(dir_tree)","options":{"read-only":"false","comment":"","autorun":"true","out-height":"","context":"output","message":"true","output":"true","dpi":72,"results":"markup","editor-max-height":"","warning":"true","label":"unnamed-chunk-2","classes":"","fig-cap":"","editor-quick-suggestions":"false","fig-width":7,"out-width":"700px","editor-font-scale":"1","fig-height":5,"editor-word-wrap":"true"}}];
 
 </script>
 <script type="module">
@@ -1622,19 +1622,6 @@ globalThis.qwebrExecuteCode = async function (
 
 </script>
 <style>
-div.callout-resource.callout {
-  border-left-color: orange;
-}
-div.callout-resource.callout-style-default > .callout-header {
-  background-color: rgb(from orange r g b / 13%);
-}
-div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
-div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
-  font-family: 'Font Awesome 6 Free', FontAwesome;
-  font-style: normal;
-  content: '\f0c1' !important;
-  background-image: none;
-}
 div.callout-reading.callout {
   border-left-color: purple;
 }
@@ -1659,6 +1646,19 @@ div.callout-practice.callout-style-default .callout-icon::before, div.callout-pr
   font-family: 'Font Awesome 6 Free', FontAwesome;
   font-style: normal;
   content: '\f085' !important;
+  background-image: none;
+}
+div.callout-resource.callout {
+  border-left-color: orange;
+}
+div.callout-resource.callout-style-default > .callout-header {
+  background-color: rgb(from orange r g b / 13%);
+}
+div.callout-resource .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path></svg>');}
+div.callout-resource.callout-style-default .callout-icon::before, div.callout-resource.callout-titled .callout-icon::before {
+  font-family: 'Font Awesome 6 Free', FontAwesome;
+  font-style: normal;
+  content: '\f0c1' !important;
   background-image: none;
 }
 div.callout-reading-advanced.callout {
